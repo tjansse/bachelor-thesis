@@ -1,0 +1,54 @@
+% --| other new definitions |-----------------------------------------
+
+
+
+% --| Math |-------------------------------------------------------
+
+
+% -- new commands --
+\newcommand{\Trace}[1]{\ensuremath{\Tr\left\{\,#1\,\right\}}} % Trace /Spur
+%
+
+% -- differentials --
+\newcommand{\td}{\,\mathrm{d}}	% total diff
+
+% -- Abbreviations --
+\renewcommand{\Re}{\text{Re}}			% Real value
+\renewcommand{\Im}{\text{Im}}			% Real value
+\newcommand{\complex}{\mathbb{C}} % Complex
+\newcommand{\real}{\mathbb{R}}    % Real
+\renewcommand{\i}{\mathrm{i}}   
+%
+\newcommand{\Ham}{\mathcal{H}}    
+\newcommand{\Prob}{\mathscr{P}}   
+\newcommand{\unity}{\mathds{1}}   
+%
+% -- New Operators --
+\IfDefined{DeclareMathOperator}{
+  \DeclareMathOperator{\rot}{rot}
+  \DeclareMathOperator{\grad}{grad}
+  \DeclareMathOperator{\rect}{rect}
+  \renewcommand{\div}{\text{div}\,}
+  \DeclareMathOperator{\Tr}{Tr}
+  \DeclareMathOperator{\const}{const}
+  \DeclareMathOperator{\e}{e} 			% exponatial Function
+}
+
+% -- new symbols --
+\newcommand{\laplace}{\Delta}
+\newcommand{\dalembert}{\Box}
+\DeclareMathOperator{\Lagr}{\mathcal{L}}
+\DeclareMathOperator{\lumi}{\mathcal{L}}
+\makeatletter
+\renewcommand*{\textoverline}[1]{$\overline{\hbox{#1}}\m@th$}
+\makeatother
+\newcommand{\msbar}{\textoverline{MS}}
+\DeclareMathOperator{\orderOp}{\mathcal{O}}
+\newcommand{\order}[1]{\orderOp(#1)}
+
+% -- names --
+\newcommand{\appl} {\texttt{APPLGRID}}
+\newcommand{\fnlo} {\texttt{fastNLO}}
+\newcommand{\mcgrid} {\texttt{MCgrid}}
+\newcommand{\rivet} {\texttt{Rivet}}
+\newcommand{\sherpa} {\texttt{SHERPA}}
