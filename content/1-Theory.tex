@@ -3,10 +3,11 @@
 
 \chapter{Grundlagen}
 \section{Next-to-leading order calculations}
+\label{sec:nlo_calculations}
 \ldots(need real and virtual, both seperately divergent, need to regularize)
 
 
-There are two general methods that are commonly used to take care of the infrared deivergences in NLO calculations, namely the \textit{slicing method} and the \textit{subtraction method}.
+There are two general methods that are commonly used to take care of the infrared divergences in NLO calculations, namely the \textit{slicing method} and the \textit{subtraction method}.
 We can demonstrate both methods with a simple example similar to the depiction in \cite{slicing_vs_subtraction}.
 Consider the integral
 %
@@ -81,11 +82,20 @@ we see that the first term gets exactly cancelled by the first term on the right
 Including the Born contribtion we arrive at the expression
 %
 \begin{equation}
-	\left< O \right> = B O(0) + a \left\{ V O(0) + \int_0^1 \frac{\dif x}{x} [O(x) R(x) - B O(0)] \right\} \, .
+	\left< O \right> = B O(0) + a \left\{ V O(0) + \int_0^1 \frac{\dif x}{x} [O(x) R(x) - B O(0)] \right\} \, ,
 \end{equation}
 %
-It now consists of three terms that are separately finite:
-The leading order Born term (B), the integrated virtual term (VI) and the real subtracted term (RS).
+which now only consists of finite terms.
+
+The subtraction method can be generalized to arbitrary hadronic cross sections, provided that the definition of the observables allows the cancellation of the divergences.
+In simplified terms, it always leads to an expression of the form
+%
+\begin{equation}
+	\sigma^\text{NLO}_{pp \rightarrow X} = \int \dif \hat \sigma^B + \int \dif \hat \sigma^V + \int \dif \hat \sigma^I + \int \dif \hat \sigma^{RS} \,
+\end{equation}
+%
+consisting of a Born (B), a virtual (V), an integrated subtraction (I) and a real subtracted (RS) term.
+All of these terms are seperately finite.
 %
 \section{Reweighting QCD calculations}
 Often it is needed to vary the parameters in QCD calculations, for example the scale variables and PDFs to estimate the uncertainty.
@@ -109,7 +119,7 @@ Rewriting this in a form that can be computed by a Monte Carlo algorithm on a pe
 %
 \begin{equation}
   \sigma_{pp \rightarrow X} = \sum_{e=1}^{N_\text{evt}} \left( \frac{\alpha_s(\mu_R^2)}{2 \pi} \right)^{p_\text{LO}} w_e(k_e) \subpdf_{s_e}(x_1,x_2,\mu_F^2) \, .
-  \label{eq:lo_mc}
+  \label{eq:reweight_lo}
 \end{equation}
 %
 The event weight $w_e(k_e)$ is given by
@@ -127,9 +137,28 @@ The kinematic parameters for each event are combined in
 %
 where the $p_i$ denote the involved partons.
 
-Provided that all event weights have been stored, using a diferent PDF is as simple as multplying each weight with the new PDF $\subpdf^\text{new}_{s_e}(x_1,x_2,\mu_F^2)$.
+Provided that all event weights have been stored, using a different PDF is as simple as multiplying each weight with the new PDF $\subpdf^\text{new}_{s_e}(x_1,x_2,\mu_F^2)$.
 The value of $\alpha_s$ can be changed similarly.
 To vary the scales, only $\alpha_s$ and $\subpdf_{s_e}$ have to be reevaluated as the weights themselves do not depend on the scales.
+
+At NLO the reweighting becomes more involved.
+The event weights now depend explicitely on the scales and due to the appearance of divergences in the calculaion of the parton-level cross sections, a method for cancelling these divergences has to be used.
+In the following, we will examine the method used by \mcgrid{} to reweight NLO calculations.
+It expects, that the events are generated using the Catani-Seymour dipole subtraction method \cite{catani_seymour1997}, which is a general algorithm for the automatic calculation of arbitrary jet cross sections at NLO.
+It is based on the subtraction method introduced in \secref{sec:nlo_calculations}.
+
+As we have seen, the subtraction method splits the calculation into four parts: The Born (B), virtual (V), integrated subtraction (I) and real subtraction (RS) part.
+All of these have to be handled differently.
+How this is done in detail can be seen in the original \mcgrid{} paper \cite{mcgrid2013}.
+The important result is, that if we treat the different contributions as single events, the NLO result can be written in a form similar to the LO expression \eqref{eq:reweight_lo}:
+%
+\begin{equation}
+  \sigma^\text{NLO}_{pp \rightarrow X} = \sum_{e=1}^{N_\text{evt}} \left( \frac{\alpha_s(\mu_R^2)}{2 \pi} \right)^{p_e} w_e(k_e) \subpdf_{s_e}(x_1,x_2,\mu_F^2) \, ,
+  \label{eq:reweight_nlo}
+\end{equation}
+%
+where $p_e$ is the order in $\alpha_s$ of the respective event, i.e.\ $p_e = p_\text{LO}$ for B events and $p_e = p_\text{LO} + 1$ for I, V and RS events.
+This allows for simple \textit{a posteriori} parameter variation analogous to the LO case.
 %
 \section{The considered process: Higgs production through gluon fusion}
 In this thesis, the considered process will be the production of a Higgs boson through gluon fusion.
