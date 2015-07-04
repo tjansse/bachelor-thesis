@@ -87,6 +87,50 @@ Including the Born contribtion we arrive at the expression
 It now consists of three terms that are separately finite:
 The leading order Born term (B), the integrated virtual term (VI) and the real subtracted term (RS).
 %
+\section{Reweighting QCD calculations}
+Often it is needed to vary the parameters in QCD calculations, for example the scale variables and PDFs to estimate the uncertainty.
+When the number of variations becomes large, it is not practical to rerun the whole event generation for each calculation as the time and resource consumption become too high.
+Instead it is possible to reuse information from previously generated events and combine them with the new parameters.
+For a leading order calculation, this is straightforward:
+Consider the leading order parton model cross section for producing an arbitrary final state X:
+%
+\begin{equation}
+	\sigma_{pp \rightarrow X} = \sum_{i,j} \int \dif x_1 \dif x_2 \int \dif \Phi_n \left( \frac{\alpha_s(\mu_R^2)}{2 \pi} \right)^{p_\text{LO}} \pdf_i(x_1,\mu_F^2) \pdf_j(x_2,\mu_F^2) \dif \hat\sigma_{ij \rightarrow X} \, .
+\end{equation}
+%
+The squared matrix element for the parton-level subprocess $2 \rightarrow n$ is denoted by $\dif \hat\sigma_{ij \rightarrow X}$, differential in the phase space $\dif \Phi_n$.
+We can group subprocesses $s$ with the same parton-level cross section into a cumulated parton density $\subpdf_s(x_1,x_2,\mu_F^2)$ and write 
+%
+\begin{equation}
+	\sigma_{pp \rightarrow X} = \int \dif x_1 \dif x_2 \int \dif \Phi_n \left( \frac{\alpha_s(\mu_R^2)}{2 \pi} \right)^{p_\text{LO}} \subpdf_s(x_1,x_2,\mu_F^2) \dif \hat\sigma_{ij \rightarrow X} \, .
+\end{equation}
+%
+Rewriting this in a form that can be computed by a Monte Carlo algorithm on a per-event basis, we arrive at
+%
+\begin{equation}
+  \sigma_{pp \rightarrow X} = \sum_{e=1}^{N_\text{evt}} \left( \frac{\alpha_s(\mu_R^2)}{2 \pi} \right)^{p_\text{LO}} w_e(k_e) \subpdf_{s_e}(x_1,x_2,\mu_F^2) \, .
+  \label{eq:lo_mc}
+\end{equation}
+%
+The event weight $w_e(k_e)$ is given by
+%
+\begin{equation}
+ 	w_e(k_e) = \Pi_\text{ps}(k_e) \Theta(k_e - k_\text{cuts}) \dif \hat\sigma_e
+\end{equation}
+%
+and represents the subprocess cross section $\dif \hat\sigma_e$ with respect to the phase space weight $\Pi_\text{ps}(k_e)$ and the kinematic cuts.
+The kinematic parameters for each event are combined in
+%
+\begin{equation}
+  k_e = \left\{ p_1 , \dots , p_n , x_1 , x_2 \right\} \, ,
+\end{equation}
+%
+where the $p_i$ denote the involved partons.
+
+Provided that all event weights have been stored, using a diferent PDF is as simple as multplying each weight with the new PDF $\subpdf^\text{new}_{s_e}(x_1,x_2,\mu_F^2)$.
+The value of $\alpha_s$ can be changed similarly.
+To vary the scales, only $\alpha_s$ and $\subpdf_{s_e}$ have to be reevaluated as the weights themselves do not depend on the scales.
+%
 \section{The considered process: Higgs production through gluon fusion}
 In this thesis, the considered process will be the production of a Higgs boson through gluon fusion.
 Although there are other possible production mechanisms in the Standard Model, this is the main process at the LHC, with an expected cross section of $\approx \SI{50}{\pico\barn}$ at a center-of-mass energy of $\sqrt{s} = \SI{14}{\tera\electronvolt}$ and a Higgs mass of $\SI{125}{\giga\electronvolt}$. \cite{higgshandbook1}
@@ -124,10 +168,10 @@ where $G_F$ denotes the Fermi coupling constant and $\tau_q = m_H^2/4m_q^2$.
 The gluon luminosity takes the form
 %
 \begin{equation}
-	\od{\lumi^{gg}}{\tau_H} = \int_0^1 \dif x_1 \dif x_2 g(x_1,\mu_F^2) g(x_2,\mu_F^2) \delta(x_1 x_2 - \tau_q) \,
+	\od{\lumi^{gg}}{\tau_H} = \int_0^1 \dif x_1 \dif x_2 \gluonpdf(x_1,\mu_F^2) \gluonpdf(x_2,\mu_F^2) \delta(x_1 x_2 - \tau_q) \,
 \end{equation}
 %
-with $g(x,\mu_F^2)$ denoting the gluon PDF.
+with $\gluonpdf(x,\mu_F^2)$ denoting the gluon PDF.
 
 The QCD corrections are composed of virtual corrections to the vertices and propagators, real gluon radiation in the initial state and the contributions of the subprocesses $gq \rightarrow Hq$ and $q \bar q \rightarrow Hg$.
 Exemplary diagrams for the corrections are shown in \figref{fig:ggh_corrections}.
