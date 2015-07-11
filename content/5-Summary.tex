@@ -1,0 +1,21 @@
+% !TeX encoding=unicode
+% !TeX spellcheck = de-DE
+
+\chapter{Summary and outlook}
+... 
+
+Version 2.0 of \mcgrid{} will allow the creation of grids for calculations matching NLO QCD computations and parton showers using \mcatnlo{}.
+This has not been verified yet for Higgs production.
+However, as has been seen in section \textcolor{red}{???} the \mcatnlo{} approach allows for a more accurate description  of soft and collinear emissions than fixed order NLO calculations.
+Therefore ...
+
+
+In section \textcolor{red}{???} we examined, how \appl{} and \fnlo{} parametrize the $x$-distribution to provide a better coverage of the data on a grid with equal-sized bins.
+Which transformation should be used depends on the considered observable.
+To achieve best possible performance, one would have to check the actual $x$-distribution in each case.
+The provided transformations are obviously a compromise to cover the needs of a large number of processes.
+The drawback of this approach is, that for some observables one needs unnecessary large grids to reliably reproduce them.
+There is, however, an alternative way: When performing the phasespace run prior to the fill run, one could, instead of only determining the limit values of $x$ and $Q^2$, sample the whole distribution.
+By the use of numerical inversion, the data could then be used to provide a transformation that represents the actual distribution of $x$ or $Q^2$ in the process.
+Thus, the bins of the grid would be filled ideally and a smaller grid would suffice to reproduce the desired observable.
+This would improve the overall performance of the software, as a smaller grid means less computation time and less memory consumption.
