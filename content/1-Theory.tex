@@ -196,7 +196,7 @@ where $p$ is the perturbative order, $N_\text{sub}$ is the number of different s
 	W_{i,j,k}^{(p),(s)} = \sum_{e=1}^{N_\text{evt}} \delta_{p,p_e} \delta_{s,s_e} I_{i,j,k}^{(N_x) (N_Q)}(k_e) w_e(k_e) I_i^{(N_x)}(x_1) I_j^{(N_x)}(x_2) I_k^{(N_Q)}(Q^2) \, .
 \end{equation}
 %
-Now the sum over the events is completely absorbed into the definition of the interpolated events.
+Now the sum over the events is completely absorbed into the definition of the interpolated weights.
 These can be calculated in a single run of the event generator and be stored efficiently.
 The calculation of the cross section has become a simple sum over the grid points and thus is much faster for a large number of events.
 The approach can easily be extended to histogrammed data like differential cross sections by defining the observable bins and computing one weight $W_{i,j,k}^{(p),(s),(b)}$ for each bin $b$.
