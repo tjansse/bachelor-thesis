@@ -34,13 +34,15 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginCodeSection{PackagesBase}
 
+\usepackage[american]{babel}
+
 % Description: Calculation with LaTeX 
 % Doc: calc.pdf
 %\usepackage{calc}
 
 % Description: Multi Language support for LaTeX
-\usepackage{polyglossia}
-\setdefaultlanguage[spelling=new, babelshorthands=true]{german}
+%\usepackage{polyglossia}
+%\setdefaultlanguage[spelling=new, babelshorthands=true]{english}
 % Description: support automatic translations
 % Doc: beameruserguide.pdf
 %\usepackage{translator}
@@ -317,7 +319,6 @@
   \IfDefined{rowcolors}{\usepackage{tablestyles}}%
 }{}
 
-
 \EndCodeSection{PackagesTables}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -452,7 +453,7 @@
    babel,            % the style of all quotation marks will be adapted
                      % to the document language as chosen by 'babel'
    german=quotes,    % Styles of quotes in each language
-   english=british,
+   english=american,
    french=guillemets
 ]{csquotes}
 
@@ -466,9 +467,12 @@
 % Doc:  biblatex.pdf
 % Incompatible: ucs and every previous bibtex package
 \usepackage[
-  style=numeric-comp, % Loads the bibliography and the citation style 
+  style=phys, % Loads the bibliography and the citation style 
   % bibstyle=alphabetic, % load a bibliography style
   % citestyle=alphabetic, % load a citatio style
+  %% get APS style with phys
+  articletitle=false,biblabel=brackets,%
+  chaptertitle=false,pageranges=false,%
   natbib=true, % define natbib compatible cite commands
 %%--- Backend --- --- ---
   backend=biber,   % (bibtex, biber)
@@ -497,6 +501,7 @@
 %% APA Style
 %  style=apa
 %
+\DeclareLanguageMapping{american}{american-apa}
 
 \EndCodeSection{PackagesCitation}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,7 +1,272 @@
 % !TeX encoding=unicode
 % !TeX spellcheck = de-DE
 
-\chapter{Grundlagen}
+\chapter{Theoretical foundations}
+%
+\section{Basics of perturbative QCD}
+QCD is the quantum field theory that describes the strong interactions between Quarks and Gluons.
+Mathematically, it is a non-abelian gauge theory with symmetry group SU(3).
+Its Lagrangian is given by
+%
+\begin{equation}
+  \Lagr_\text{QCD} = \sum_q \bar\psi_{q,a} (i \gamma^\mu \partial_\mu \delta_{ab} - g_s \gamma^\mu t_{ab}^C \glufield_\mu^C - m_q \delta_{ab}) \psi_{q,b} - \frac{1}{4} F_{\mu \nu}^A F^{A \, \mu \nu} \, ,
+\end{equation}
+%
+where the sum goes over all quark flavors.
+The $\psi_{q,a}$ are quark-field spinors, where $a=1 \dots 3$ denotes the color index, and the $\glufield_\mu^C$ are gluon fields with a color index $C=1 \dots 8$.
+The strong coupling constant is denoted by $g_s$.
+Quarks transform under the fundamental representation of SU(3) while gluons transform under the adjoint representation.
+The $t_{ab}^C$ are  the generators of the group.
+The gluon field tensor $F_{\mu \nu}^A$ is given by
+%
+\begin{equation}
+	F_{\mu \nu}^A = \partial_\mu \glufield_\nu^A - \partial_\nu \glufield_\mu^A - g_s f_{ABC} \glufield_\mu^B \glufield_\nu^C \, ,
+\end{equation}
+%
+where the $f_{ABC}$ are the structure constants of the group, defined through $[ t^A,t^B ] = i f_{ABC} t^C$.
+In comparison to quantum electrodynamics (QED), the main difference is the presence of the interaction term $- g_s f_{ABC} \glufield_\mu^B \glufield_\nu^C$ which results in the existence of 3-gluon and 4-gluon vertices.
+
+The perturbative approach to QCD is to write the observables as a power series in $\alpha_s = g_s^2/(4 \pi)$:
+%
+\begin{equation}
+  F = F^{(1)} \alpha_s + F^{(2)} \alpha_s^2 + \dots \, ,
+\end{equation}
+%
+where $\alpha_s \ll 1$ so that the series can be truncated after a few terms to obtain a useful approximation.
+A straightforward way to determine the coefficients is the use of Feynman Diagrams.
+%
+\subsection{Renormalization and the running coupling}
+Calculations in perturbative QCD involve UV-divergent diagrams such as the one illustrated in \cref{fig:loop}, which gives a contribution to the gluon self-energy.
+Luckily QCD is a renormalizable theory and therefore the divergences can be handled by regularization and renormalization.
+As a consequence, the quantities appearing in the Lagrangian (the \enquote{bare} quantities) are not the same as the quantities we observe physically.
+The measured values depend on the energy scale, called \textit {renormalization scale} $\mu_R$, at which they are evaluated.
+This scale is arbitrary and unphysical and if we consider the whole perturbative series, the scale dependence vanishes.
+The scale dependence can be described by differential equations known as \textit{renormalization group equations}.
+For example, the equation for the coupling constant takes the form
+%
+\begin{equation}
+  \dod{ \alpha_{s} ( \mu_R^{2} ) }{ \ln{\mu_R^2} } = \beta(\alpha_s(\mu_R^2)) = - \alpha_s^2 (b_0 + b_1 \alpha_s + b_2 \alpha_s^2 + \dots) \, .
+	\label{eq:rge}
+\end{equation}
+%
+The minus sign in \cref{eq:rge} is responsible for the asymptotic freedom of QCD:
+As the momentum transfer becomes large, the strong coupling becomes weak so that quarks and gluons nearly behave as if they were free particles.
+%
+\begin{figure}[]
+	\includegraphics[width=0.3\textwidth]{images/loop.pdf}
+	\caption{UV-divergent loop diagram}
+	\label{fig:loop}
+\end{figure}
+%
+
+In leading order the analytic solution for \cref{eq:rge} is known as \textit{running couplig} and given by
+%
+\begin{equation}
+	\alpha_s(\mu_R^2) = \frac{\alpha_s(\mu_0^2)}{1 + b_0 \alpha_s(\mu_0^2) \ln \frac{\mu_R^2}{\mu_0^2}} = \frac{1}{b_0 \ln \frac{\mu_R^2}{\Lambda^2}} \quad \text{with} \quad b_0=\frac{11 N_C - 2 n_f}{12 \pi} \, ,
+\end{equation}
+%
+where $N_C$ is the number of colors and $n_f$ denotes the number of flavors.
+Note that this is only valid at scales where $n_f$ does not change.
+The first expression uses a reference scale $\mu_0$, where the value of $\alpha_s$ is known whereas the second one uses the constant $\Lambda$, which is the scale where the coupling would diverge.
+%
+\section{The Parton Model}
+The parton model was introduced in 1969 by Richard P. Feynman to describe high-energy particle collisions involving hadrons \cite{feynman1969}.
+The basic assumption of the parton model is that all hadrons consist of point-like particles (partons) which are responsible for their behavior in interactions.
+In QCD these can be identified as quarks and gluons.
+Furthermore, it is assumed that the hadron is in a reference frame where it carries infinite (or at least very high) momentum.
+In this infinite momentum frame the hadron suffers both Lorentz contraction and time dilation so that the distribution of partons within it does not change during the (vanishingly small) time of interaction.
+Thus each parton carries a definite fractional momentum $x$, with $0<x<1$.
+In addition, the process of hadronization due to quark confinement happens too late to influence the interaction.
+Another important consequence is that the probability of a parton influencing the scattering of another parton is suppressed (\enquote{incoherence} of the parton model).
+The reason this model works is the asymptotic freedom of the underlying theory.
+However, this also limits the applicability of the parton model to high energy cross sections.
+
+With the help of perturbative QCD, there is a class of reactions involving hadrons for which the cross sections can be calculated directly.
+These reactions are inclusive and do not contain any hadrons in the initial state.
+A simple example is lepton pair annihilation into hadrons.
+As the hadronic final state is fully inclusive, the cross section is identical to the electroweak cross section for $l+l' \rightarrow q \bar q$, where $l$ and $l'$ denote leptons and $q$ ($\bar q$) denotes a (anti-)quark.
+Assuming $e^+ e^-$ annihilation and energies much less than the Z boson mass, the total cross section is therefore given by
+%
+\begin{equation}
+  \sigma_{e^+ e^- \rightarrow q \bar q}(s) = \frac{4 \pi \alpha^2}{3 s} \cdot 3 \sum_f Q_f^2 \, ,
+	\label{eq:e+e-_annihilation}
+\end{equation}
+%
+where the sum is over all quark flavors that can be produced at the center-of-mass energy $\sqrt s$ and the factor $3$ is the number of colors \cite{cteq2001}.
+%
+%\subsection{Lepton-Hadron Cross Sections}
+%In the parton model, cross sections involving hadrons in the initial state are calculated by combining the parton-level cross sections (in leading order) with probability densities for a specific parton to be involved in it.
+%For example, the total cross section for scattering of a hadron by a lepton (\figref{fig:dis}) can be written as
+%%
+%\begin{equation}
+%	\sigma^{(lh)} (x,Q^2) = \sum_f \int_x^1 \dif \xi \enspace \hat \sigma^{(lf)} (x / \xi, Q^2) \cdot \phi_{f/h}(\xi) \, .
+%\end{equation}
+%%
+%\begin{figure}[]
+%	\includegraphics[width=0.5\textwidth]{images/dis.pdf}
+%	\caption{Deeply inelastic scattering.}
+%	\label{fig:dis}
+%\end{figure}
+%%
+%where $\phi_{f/h}(\xi)$ is the probability density for finding a parton of flavor $f$ with fractional momentum $\xi$ in hadron $h$.
+%This is generally called a \textit{parton distribution function} (PDF).
+%The variables $x$ and $Q^2$ are commonly used to describe this process, which is called \textit{deeply inelastic scattering}, and are defined as follows:
+%%
+%\begin{align}
+%  	Q^2 &= -q^2 = -(k - k')^2		\quad \text{(momentum transfer)} \\
+%	x &= \frac{Q^2}{2 p \cdot q}	\quad \text{(Bjorken scaling variable)}
+%\end{align}
+%%
+%$k$ and $k'$ are the momenta of the lepton before and after the scattering while $p$ is the momentum of the initial hadron.
+%The cross section for elastic scattering of the parton, $\hat \sigma^{(lf)}$, can be calculated in the Born approximation.
+%
+%In deeply inelastic scattering, the PDFs are related to structure functions $F_i(x,Q^2)$.
+%These can experimentally be obtained by measuring the differential cross section, which (considering photon exchange only) is related to the structure functions by
+%%
+%\begin{equation}
+%	\frac{\dif \sigma^{(lh)}}{\dif x \dif y} = 8 \pi \alpha^2 \frac{m_h E}{Q^4} \left[ \frac{y^2}{2} 2 x F_1(x,Q^2) + \left( 1 - y - \frac{m_h x y}{2 E} \right) F_2(x,Q^2) \right] \, ,
+%\end{equation}
+%%
+%where $y = \frac{p \cdot q}{p \cdot k}$ describes the inelasticity.
+%Therefore, deep inelastic scattering can be used to determine the PDFs.
+%The structure functions have two interesting properties:
+%%
+%\begin{enumerate}[labelindent=\parindent,leftmargin=*]
+%	\item in the \textit{Bjorken limit} $Q^2,\nu  \rightarrow \infty$ with $x$ fixed, the structure functions depend only on $x$, not on $Q^2$ (\textit{scaling});
+%	\item the structure functions satisfy the \textit{Callan-Gross relation}: $2 x F_1 = F_2$.
+%\end{enumerate}
+%%
+%The first one implies that partons are point-like particles.
+%The second is evidence for the spin-$\frac{1}{2}$ nature of quarks \cite{ellis1996}.
+%%
+\subsection{Hadron-Hadron Cross Sections}
+One of the achievements of the parton model is the prediction of cross sections for hadron-hadron collisions such as the \textit{Drell-Yan process} $h(p) +  h'(p') \rightarrow l(k) + l'(k') + X$.
+That is possible because PDFs are universal between reactions, so they can be determined once and used to calculate different cross sections.
+In general, the cross section for a hard scattering process involving two initial hadrons can be written as
+%
+\begin{equation}
+	\sigma(p,p') = \sum_{i,j} \int \dif \xi \dif \xi' \enspace \phi_{i/h}(\xi) \cdot \sigma_{ij}(\xi p,\xi' p',\alpha_s(\mu^2)) \cdot \phi_{j/h'}(\xi') \, .
+\end{equation}
+%
+
+%\Cref{fig:Z_y_LO} shows the cross section as a function of the Z boson rapidity in a Drell-Yan process at $\sqrt{s}=\SI{7}{\tera\electronvolt}$ calculated with the Sherpa event generator \cite{gleisberg2008ta,schonherr2008,gleisberg2008fv,schumann2007}.
+%The plot has been generated using the Rivet analysis system \cite{rivet2010}.
+%Different PDFs have been used (For each PDF set the central value has been used. The inherent uncertainties are not shown here.).
+%One sees that for small $y$ there is good agreement with the experimental data.
+%For $y > 2$ there are more fluctuations in the data as there are not enough events recorded in this range.
+%It is dominated by statistical uncertainty so that it differs more from the prediction.
+%The differences between the PDFs are not significant here.
+%% 
+%\begin{figure}[]
+%	\includegraphics[width=0.7\textwidth]{images/Z_y_LO.pdf}
+%	\caption{Cross section as a function of the Z boson rapidity in a Drell-Yan process at $\sqrt{s}=\SI{7}{\tera\electronvolt}$ for different PDF sets.
+%	The data has been collected by the CMS detector at the LHC during 2010 and is adopted from \cite{cms2012}.}
+%	\label{fig:Z_y_LO}
+%\end{figure}
+%%
+\section{Corrections to the naive parton model}
+In order to analyze the effects of higher order corrections, let us reconsider the case of $e^+ e^-$ annihilation into hadrons.
+The Born cross section is given by \cref{eq:e+e-_annihilation}.
+The first correction towards NLO is the emission of a gluon by one of the quarks (see \cref{fig:e+e-_real}).
+%
+\begin{figure}
+\centering
+	\begin{subfigure}[]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{images/e+e-_real1.pdf}
+	\end{subfigure}
+	\hspace{1cm}
+	\begin{subfigure}[]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{images/e+e-_real2.pdf}
+	\end{subfigure}
+	\caption{Feynman diagrams for gluon emission in $e^+ e^-$ annihilation}
+	\label{fig:e+e-_real}
+\end{figure}
+%
+Considering soft emission only, one can show that the differential cross section for this process factorizes so that one can write
+%
+\begin{equation}
+  \abs{\matrixelement_{q \bar q g}}^2 \dif \Phi_{q \bar q g} \simeq \abs{\matrixelement_{q \bar q}}^2 \dif \Phi_{q \bar q} \dif \softgluon \, .
+\end{equation}
+%
+The squared matrix element and phase space for $q \bar q$ production plus the emission of a soft gluon is given by the Born squared matrix element and phase space multiplied by a factor $\dif \softgluon$, which is the probability for the emission of a soft gluon:
+%
+\begin{equation}
+  \dif \softgluon = \frac{2 \alpha_s C_F}{\pi} \frac{\dif E}{E} \frac{\dif \theta}{\sin \theta} \frac{\dif \phi}{2 \pi} \, .
+\end{equation}
+%
+There are two divergences in this equation:
+In the limit $E \rightarrow 0$ there is an infrared divergence and in the limit $\theta \rightarrow 0,\pi$ there is a collinear divergence when the gluon and quark move in the same direction.
+These divergences always appear when a gluon is emitted by a quark \cite{salam2010}.
+
+Additionally to the real emissions in \cref{fig:e+e-_real} there are virtual emissions shown in \cref{fig:e+e-_virtual}, which we have not taken into account yet.
+%
+\begin{figure}[]
+	\includegraphics[width=\textwidth]{images/e+e-_virtual.pdf}
+	\caption{Virtual correction in $e^+ e^-$ annihilation}
+	\label{fig:e+e-_virtual}
+\end{figure}
+%
+As the total cross section must be finite, the divergences in the real term must be canceled by the virtual term (this can, for example, be shown by the use of dimensional regularization \cite{ellis1996}).
+Therefore the corrections to the total cross section are dominated by hard, large-angle gluons and for these perturbation theory is applicable \cite{salam2010}.
+Observables that are insensitive to the emission of soft or collinear gluons, like the total cross section for $e^+ e^- \rightarrow \text{hadrons}$, are called \textit{infrared safe}.
+%
+\subsection{Factorization}
+In processes involving initial-state hadrons, the partons can emit gluons before entering the hard interaction (see \cref{fig:initial_gluon}).
+%
+\begin{figure}
+\centering
+	\begin{subfigure}[]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/initial_real.pdf}
+	\end{subfigure}
+	\hspace{1cm}
+	\begin{subfigure}[]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/initial_virtual.pdf}
+	\end{subfigure}
+	\caption{Feynman diagrams for initial-state gluon emission}
+	\label{fig:initial_gluon}
+\end{figure}
+%
+However, there is an important difference between real and virtual emissions in this case:
+While the virtual emission does not change the momentum of the parton entering the process, the real gluon carries off parts of the parton momentum.
+Thus, the total cross section consists of two different hard cross sections that do not cancel in the collinear limit.
+This is a consequence of the collinear limit corresponding to long-range effects of the strong interaction, which are not calculable in perturbation theory.
+
+In order to be able to calculate cross sections with initial-state hadrons, we can take a similar approach as for the renormalization of the coupling constant and introduce a scale variable which we call the \textit{factorization scale} $\mu_F$.
+All the non-perturbative parts are cut off at $\mu_F$ and absorbed into the PDF.
+There is an arbitrariness in how much of the correction terms is to be factored out.
+This is defined by the \textit{factorization scheme}.
+Common schemes include the DIS scheme, in which all non-leading order contributions are absorbed into the PDFs, and the $\overline{MS}$ scheme, in which only the divergent parts are absorbed.
+Once the factorization scheme has been chosen, it has to be used consistently in all following cross section calculations.
+%
+\subsection{Evolution}
+There is an analog for the renormalization group equation for factorization, called the Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP) equation.
+For a quark entering the hard process with longitudinal momentum $xp$ it takes the form
+%
+\begin{equation}
+	\dod{q(x,\mu_F^2)}{\ln{\mu_F^2}} = \frac{\alpha_s}{2 \pi} \int_x^1 \dif z P_{qq}(z) \frac{q(x/z,\mu_F^2)}{z} \, ,
+\end{equation}
+%
+where $q(x/z,\mu_F^2)$ is the quark distribution.
+The function $P_{qq}(z)$ is called splitting kernel.
+It has a perturbative expansion in $\alpha_s$:
+%
+\begin{equation}
+	P_{qq}(z) = P_{qq}^{(0)}(z) + \frac{\alpha_s}{2 \pi} P_{qq}^{(1)}(z) + \dots \, .
+\end{equation}
+%
+As the proton does not only contain quarks but also antiquarks and gluons, the actual DGLAP equation is a matrix equation:
+%
+\begin{equation}
+	\dod{}{\ln{\mu_F^2}} \begin{pmatrix} q_i \\ g \end{pmatrix} = \frac{\alpha_s(\mu_F^2)}{2 \pi}
+	\begin{pmatrix}
+		P_{q_i q_j}	&	P_{q_i g} \\
+		P_{g q_j}	&	P_{gg}
+	\end{pmatrix}
+	\otimes \begin{pmatrix} q_j \\ g \end{pmatrix} \, .
+\end{equation}
+%
+All splitting kernels can be written as perturbative series and have been calculated up to next-to-next-to-leading-order\cite{splittingkernel1,splittingkernel2}. 
+The DGLAP equation allows to calculate the scale dependence of the PDFs and therefore is an important and powerful tool for PDF fits.
 \section{Next-to-leading order calculations}
 \label{sec:nlo_calculations}
 \ldots(need real and virtual, both seperately divergent, need to regularize)
