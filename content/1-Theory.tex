@@ -607,21 +607,25 @@ According to \cite{gfusionnnlo2}, at LO this approximation is accurate within \S
 %
 
 \section{Leptonic Higgs decay}
-There are several possible decay channels for the Higgs boson.
+In an experiment, one would never observe the Higgs boson directly but rather reconstruct it from the measured properties of its decay products.
+We want to approximate this situation by simulating the Higgs boson decay.
+There are several possible decay channels.
 One has to keep in mind that the Higgs coupling is proportional to the particle masses, so that it will decay into the heaviest possible particles.
 Assuming a Higgs mass of $m_H = \SI{126}{\giga\electronvolt}$, the most relevant decay products are $q \bar q$ (where q denotes a bottom or charm quark), $WW$, $ZZ$, $Z \gamma$, $\gamma \gamma$, $gg$ and $\tau^+ \tau^-$ \cite{higgshandbook2}.
 The decay into photons or gluons is only possible through intermediate loops.
-
 The studies leading to the discovery of the Higgs boson at the LHC relied primarily on the decay modes $H \rightarrow \gamma \gamma$, $H \rightarrow ZZ$ and $H \rightarrow WW$.
+
+For the purpose of this thesis, we will consider the decay $H \rightarrow \tau^+ \tau^-$, which has a branching ratio of approximately \SI{6}{\percent} \cite{higgshandbook3}.
+The Feynman diagram is shown in \cref{fig:h_tautau}.
+It would be possible to simulate the other decay channels as well, however, this would only complicate the analysis unnecessarily.
+The leptonic decay is the easiest one and closely resembles the Drell-Yan process.
+There have been searches for $H \rightarrow \tau \tau$ events in the LHC data and both ATLAS \cite{htau_atlas} and CMS \cite{htau_cms} have published evidence for this type of decay.
+It also allows for the observation of additional jets that are produced in the initial state and are separated from the Higgs decay products.
+We will not consider the further decay of the tau leptons, which would naturally occur in the experiment.
 %
 \begin{figure}[]
 	\includegraphics[width=0.5\textwidth]{images/h_tautau.pdf}
 	\caption{Higgs decay into two $\tau$ leptons.}
-	\label{fig:gluonfusion}
+	\label{fig:h_tautau}
 \end{figure}
 %
-
-\ldots
-For the purpose of this thesis, we will consider the decay $H \rightarrow \tau^+ \tau^-$, which has a branching ratio of approximately \SI{6}{\percent} \cite{higgshandbook3}.
-\ldots
-There have been searches for $H \rightarrow \tau \tau$ events in the LHC data and both ATLAS \cite{htau_atlas} and CMS \cite{htau_cms} have published evidences for this type of decay.
