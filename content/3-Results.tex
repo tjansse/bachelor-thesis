@@ -4,6 +4,26 @@
 \chapter{Results}
 %
 \section{Study of the Higgs transverse momentum}
+\ldots
+
+Four seperate runs have been performed: One run each for zero, one and two jets at fixed order NLO and one \mcatnlo{} run merging up to two jets in the core process.
+The \rivet{} analysis system has been used to extract the transverse momentum of the Higgs boson from the events.
+In the multijet merged run, the cases of at least zero, one or two jets have been distinguished and sorted into different histograms.
+Thus, we obtain inclusive observables that are comparable to the fixed order results.
+\sherpa{} has been used for all calculations and the \mcfm{} library \cite{mcfm_hjj} has been interfaced for the 2-jet process.
+Final state jets have been extracted by the \fastjet{} library \cite{fastjet_manual} using the anti-$k_t$ algorithm \cite{anti_kt} with a radius parameter $R=0.4$ and a $p_\perp$-cut of $p_\perp > \SI{20}{\giga\electronvolt}$.
+
+\Cref{fig:h_hpt_nominal} compares the fixed order NLO and the merged \mcatnlo{} results in the case of no jets.
+At NLO the tranverse momentum of the Higgs boson arises solely from real gluon emissions as the LO process does not have any tranverse parts.
+The splitting leading to the real emissions is divergent in the soft and collinear limits which correspond to low transverse momenta.
+Therefore, in \cref{fig:h_hpt_nominal}, we see that the cross section diverges towards low $p_\perp$.
+The multijet result behaves completely different in the low $p_\perp$ region and shows no divergence.
+In this case, the cross section is dominated by parton showers which include higher orders and are not divergent.
+Compared to the fixed order calculation, the cross section is much smaller in the low $p_\perp$ region.
+As opposed to this, the cross section is amplified for $p_\perp \gtrsim \SI{20}{\giga\electronvolt}$.
+The influence of the parton shower is neglible in this region.
+Instead the additional contributions come from the higher jet multiplicities that have been merged into the calculation.
+At high $p_\perp$, both results approach each other.
 %
 \begin{figure}
 	\centering
@@ -114,19 +134,19 @@ However \textcolor{red}{\ldots}
 \begin{sidewaysfigure}
 \centering
 \begin{subfigure}[]{0.49\textwidth}
-	\includegraphics[width=\textwidth]{images/hjjnlo_hpt_50v30.pdf}
+	\includegraphics[width=\textwidth]{images/hjjnlo_hpt_70v50.pdf}
 \end{subfigure}
 \hfill
 \begin{subfigure}[]{0.49\textwidth}
-	\includegraphics[width=\textwidth]{images/hjjnlo_hy_50v30.pdf}
+	\includegraphics[width=\textwidth]{images/hjjnlo_hy_70v50.pdf}
 \end{subfigure}
 
 \begin{subfigure}[]{0.49\textwidth}
-	\includegraphics[width=\textwidth]{images/hjjnlo_lpt_50v30.pdf}
+	\includegraphics[width=\textwidth]{images/hjjnlo_lpt_70v50.pdf}
 \end{subfigure}
 \hfill
 \begin{subfigure}[]{0.49\textwidth}
-	\includegraphics[width=\textwidth]{images/hjjnlo_leta_50v30.pdf}
+	\includegraphics[width=\textwidth]{images/hjjnlo_leta_70v50.pdf}
 \end{subfigure}
 \caption{H+2j NLO}
 \label{fig:hjjnlo_validation}
