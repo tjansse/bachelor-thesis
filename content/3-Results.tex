@@ -11,6 +11,7 @@ The \rivet{} analysis system has been used to extract the transverse momentum of
 In the multijet merged run, the cases of at least zero, one or two jets have been distinguished and sorted into different histograms.
 Thus, we obtain inclusive observables that are comparable to the fixed order results.
 \sherpa{} has been used for all calculations and the \mcfm{} library \cite{mcfm_hjj} has been interfaced for the 2-jet process.
+For the fixed order calculations, both the renormalization and the factorization scale have been set to the transverse mass of the Higgs boson.
 Final state jets have been extracted by the \fastjet{} library \cite{fastjet_manual} using the anti-$k_t$ algorithm \cite{anti_kt} with a radius parameter $R=0.4$ and a $p_\perp$-cut of $p_\perp > \SI{20}{\giga\electronvolt}$.
 
 \Cref{fig:h_hpt_nominal} compares the fixed order NLO and the merged \mcatnlo{} results in the case of no jets.
@@ -24,6 +25,13 @@ As opposed to this, the cross section is amplified for $p_\perp \gtrsim \SI{20}{
 The influence of the parton shower is neglible in this region.
 Instead the additional contributions come from the higher jet multiplicities that have been merged into the calculation.
 At high $p_\perp$, both results approach each other.
+
+The results containing one or more jets are compared in \cref{fig:hj_hpt_nominal}.
+The total cross section expectably is smaller than in the 0-jet case.
+Due to the jet cut, the minimum $p_\perp$ of the Higgs boson is \SI{20}{\giga\electronvolt}.
+At $p_\perp = \SI{20}{\giga\electronvolt}$, when the Higgs boson recoils against the jet, the cross section diverges at NLO.
+Similar to the previous situation, the parton shower fixes the divergence and produces a smooth distribution.
+At high $p_\perp$ the merged run gives a higher cross section, this time the additional contributions stem from the 2-jet process.
 %
 \begin{figure}
 	\centering
