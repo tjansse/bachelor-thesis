@@ -263,12 +263,31 @@ As the proton does not only contain quarks but also antiquarks and gluons, the a
 		P_{g q_j}	&	P_{gg}
 	\end{pmatrix}
 	\otimes \begin{pmatrix} q_j \\ g \end{pmatrix} \, .
+	\label{eq:dglap}
 \end{equation}
 %
 All splitting kernels can be written as perturbative series and have been calculated up to next-to-next-to-leading-order\cite{splittingkernel1,splittingkernel2}. 
 The DGLAP equation allows to calculate the scale dependence of the PDFs and therefore is an important and powerful tool for PDF fits.
 %
 \section{Parton shower}
+There are phase space regions that cannot be well described by fixed order calculations in perturbation theory.
+These include collinear parton splitting and soft gluon emission, which are closely related to the presence of infrared divergences.
+To describe them accurately, higher order terms need to be considered.
+However, the work required to derive the needed matrix elements quickly increases with each order, which is the reason why most processes have not been calculated further than NLO.
+We need a different approach to deal with the problematic phase space regions.
+Instead of relying on a fixed order calculation, we can consider an approximate model that includes the dominant contributions at all orders.
+In this model, the collinear splitting and soft gluon emission of every parton in the initial and final state is simulated with respect to the related probabilities.
+The additional partons are again able to split or radiate gluons.
+By recursively applying this procedure, we obtain a cascade of parton emissions, called a \textit{parton shower}.
+An example is illustrated in \cref{fig:partonshower}.
+The shower ends when a certain cut-off scale is reached.
+
+The evolution of the splitting with the decreasing scale is given by the DGLAP equation \cref{eq:dglap}.
+In this context the PDFs do not describe the momentum distributions of the partons inside of a hadron, but rather the distribution of the momentum fractions of the partons resulting from the splitting.
+
+The computation of parton showers can be formulated in a way that is well suited for a Monte Carlo program.
+When the parton shower program is combined with a hadronization model, that combines both the initial state and the final state partons into colorless hadrons, we call the result a \textit{parton shower Monte Carlo event generator}.
+It is a powerful tool that is able to fully simulate QCD events in hadron collisions.
 %
 \begin{figure}[]
 	\includegraphics[width=0.5\textwidth]{images/partonshower.pdf}
