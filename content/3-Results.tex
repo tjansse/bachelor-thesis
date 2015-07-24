@@ -164,31 +164,55 @@ However \textcolor{red}{\ldots}
 
 
 
+\section{Scale factor variation}
+Now that we have verified that the grids produced by \appl{} and \fnlo{} are able to reproduce the reference distributions up to the interpoation accuracy, we can take a look at the variation of the QCD parameters.
+In this section we will examine the results obtained by varying the renormalization and factorization scales.
+\appl{} and \fnlo{} both have methods implemented that allow to change the scales when calculating NLO cross sections.
+There are different approaches to this.
+The original method used by \appl{} is to apply the renormalization group equation for the renormalization scale and calculate the LO DGLAP splitting functions using \hoppet{} \cite{hoppet} to vary the factorization scale.
+\fnlo{} originally did not allow the use of \hoppet{} and instead stored individual grids for each desired factorization scale.
+This approach is not as flexible and leads to larger grid files but the calculation of the cross section is much faster.
+However, since version 2.3 \fnlo{} can also be used in combination with \hoppet{}.
+Another method, called \enquote{flexible-scale table}, is also implemented in \fnlo{}.
+It stores fully scale-independent weights and allows for arbitrary and independent variation of the scale factors without the need of splitting functions.
+As this feature is not yet implemented in \mcgrid{} (but will be in a future release), the first method is used in the following calculations.
 
-
+The reference histograms are again gnerated with Sherpa using the CT10 pdf.
+One central scale $\mu_R = \mu_F = m_H$ and two additional scales $2 \mu$ and $\frac{1}{2} \mu$ are used.
+During the central scale run, grids for the transverse momentum of the Higgs boson are filled by \appl{} and \fnlo{} using an \mcgrid{}-enabled \rivet{} analysis.
+This is done for Higgs production with zero and one jets using an event sample of 100 million events in each case.
+In \cref{fig:scalesvar_hnlo_appl,fig:scalesvar_hnlo_fnlo} the reference distributions are compared to the results from \appl{} and \fnlo{} in the 0-jet case.
+It can be seen that the accuracy is very good in both cases.
+The discrepancies at low $p_\perp$ in \cref{fig:scalesvar_hnlo_appl} are due to an insufficient phasespace run, meaning that during the fill run $x$-values emerged that were not expected by \appl{}.
+The \fnlo{} grid was prepared with the same phasespace run and obviously it responds to these events in a different way resulting in a precise reproduction throughout the range of considered values.
+Using a larger phasespace run, the inaccuracies with \appl{} would of course vanish.
 %
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{images/scalesvar_hnlo_appl.pdf}
 	\caption{Scale variation appl}
+	\label{fig:scalesvar_hnlo_appl}
 \end{figure}
 %
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{images/scalesvar_hnlo_fnlo.pdf}
 	\caption{Scale variation fnlo}
+	\label{fig:scalesvar_hnlo_fnlo}
 \end{figure}
 %
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{images/scalesvar_hjnlo_appl.pdf}
 	\caption{Scale variation appl}
+	\label{fig:scalesvar_hjnlo_appl}
 \end{figure}
 %
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{images/scalesvar_hjnlo_fnlo.pdf}
 	\caption{Scale variation fnlo}
+	\label{fig:scalesvar_hjnlo_fnlo}
 \end{figure}
 %
 
