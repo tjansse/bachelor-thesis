@@ -292,12 +292,11 @@ Typically, only the boundary values are calculated because of limited resources.
 However, using interpolation grids, any combination of scale factors can be evaluated very fast.
 To demonstrate this, \cref{fig:3dscale} shows the total cross section of inclusive Higgs production through gluon fusion for different combinations of scale factors, calculated using a \fnlo{} grid.
 Both the renormalization scale and the factorization scale are independently varied by 13 factors between $\frac{1}{4}$ and \num{4} resulting in a total number of 169 calculations of the cross section.
-
 We see that the dependence on the factorization scale is low whereas we observe a strong dependence on the renormalization scale.
 %
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{images/3dscale.pdf}
+	\includegraphics[width=0.8\textwidth]{images/3dscale.pdf}
 	\caption{Application example of the interpolation method}
 	\label{fig:3dscale}
 \end{figure}
@@ -306,3 +305,4 @@ We see that the dependence on the factorization scale is low whereas we observe 
 Calculations such as this one and the example illustrated before would be extremely costly if done explicitly.
 If they are time-critical, explicit calculations become impossible.
 Interpolation tools offer much more flexibility in these cases.
+Especially the estimation of uncertainties can be much more differentiated.
