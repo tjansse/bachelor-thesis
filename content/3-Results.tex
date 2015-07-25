@@ -6,6 +6,13 @@
 \section{Study of the Higgs transverse momentum}
 \ldots
 
+The transverse momentum distribution of the Higgs boson is one of the most interesting observables in Higgs production.
+It provides a powerful test of the standard model once the statistics of the experimental results become suitable.
+In the following, we will briefly study the distribution in the gluon fusion process, where the Higgs boson is produced along with a different number of jets.
+In particular, we will take a look at how the quality of the prediction is influenced by parton showers.
+
+\ldots
+
 Four seperate runs have been performed: One run each for zero, one and two jets at fixed order NLO and one \mcatnlo{} run merging up to two jets in the core process.
 The \rivet{} analysis system has been used to extract the transverse momentum of the Higgs boson from the events.
 In the multijet merged run, the cases of at least zero, one or two jets have been distinguished and sorted into different histograms.
@@ -13,6 +20,10 @@ Thus, we obtain inclusive observables that are comparable to the fixed order res
 \sherpa{} has been used for all calculations and the \mcfm{} library \cite{mcfm_hjj} has been interfaced for the 2-jet process.
 For the fixed order calculations, both the renormalization and the factorization scale have been set to the transverse mass of the Higgs boson.
 Final state jets have been extracted by the \fastjet{} library \cite{fastjet_manual} using the anti-$k_t$ algorithm \cite{anti_kt} with a radius parameter $R=0.4$ and a $p_\perp$-cut of $p_\perp > \SI{20}{\giga\electronvolt}$.
+All the resulting histograms have been normalized to \num{1}, so that the comparison is not affected by differences in the scale definitions between the fixed order and the merged runs.
+As we want to do a qualitative study rather than a quantitative one, this is no big restriction.
+For the same reason no uncertainties are shown in the plots.
+More detailed studies can be found in the relevant literature, cf. for example \cite{symmetrybreaking1,symmetrybreaking2} or \cite{higgshandbook1,higgshandbook2,higgshandbook3}.
 
 \Cref{fig:h_hpt_nominal} compares the fixed order NLO and the merged \mcatnlo{} results in the case of no jets.
 At NLO the tranverse momentum of the Higgs boson arises solely from real gluon emissions as the LO process does not have any tranverse parts.
@@ -22,16 +33,20 @@ The multijet result behaves completely different in the low $p_\perp$ region and
 In this case, the cross section is dominated by parton showers which include higher orders and are not divergent.
 Compared to the fixed order calculation, the cross section is much smaller in the low $p_\perp$ region.
 As opposed to this, the cross section is amplified for $p_\perp \gtrsim \SI{20}{\giga\electronvolt}$.
-The influence of the parton shower is neglible in this region.
+The influence of the parton shower is negligible in this region.
 Instead the additional contributions come from the higher jet multiplicities that have been merged into the calculation.
 At high $p_\perp$, both results approach each other.
 
 The results containing one or more jets are compared in \cref{fig:hj_hpt_nominal}.
-The total cross section expectably is smaller than in the 0-jet case.
-Due to the jet cut, the minimum $p_\perp$ of the Higgs boson is \SI{20}{\giga\electronvolt}.
+Due to the jet cut, Higgs $p_\perp$ below \SI{20}{\giga\electronvolt} are very unlikely and present no meaningful observable, so we do not consider that case.
 At $p_\perp = \SI{20}{\giga\electronvolt}$, when the Higgs boson recoils against the jet, the cross section diverges at NLO.
 Similar to the previous situation, the parton shower fixes the divergence and produces a smooth distribution.
 At high $p_\perp$ the merged run gives a higher cross section, this time the additional contributions stem from the 2-jet process.
+
+With two additional jets, the fixed order and the showered result become very similar, cf. \cref{fig:hjj_hpt_nominal}.
+The core process now is the same in both cases.
+Higher multiplicities in the \mcatnlo{} result are generated only by the parton shower.
+The influence of the shower, though, is negligible.
 %
 \begin{figure}
 	\centering
