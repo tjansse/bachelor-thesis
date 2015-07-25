@@ -225,7 +225,15 @@ The grid that has been filled with 100 million events using the central value of
 %
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{images/nnpdf_band.pdf}
+	\begin{subfigure}[]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{images/nnpdf_band_appl.pdf}
+		\caption{\appl{}}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{images/nnpdf_band_fnlo.pdf}
+		\caption{\fnlo{}}
+	\end{subfigure}
 	\caption{Application example of the interpolation method.
 				The figure shows the distribution of replicas from the NNPDF3.0 NLO set including the error on $\alpha_s$ for the $p_\perp$ of the Higgs boson in gluon fusion.
 				The green area highlights the 1-$\sigma$ confidence interval.}
