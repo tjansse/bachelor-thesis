@@ -231,6 +231,15 @@ Using a larger phasespace run, the inaccuracies with \appl{} would of course van
 \end{figure}
 %
 \section{Reweighting to a different PDF}
+In addition to the variation of the scale factors, it is possible to change the PDF as well.
+As an example, the transverse momentum of the Higgs boson is considered again.
+Grids that have been filled with the CT10 PDF are convoluted with the central value of the NNPDF3.0 set \textit{a posteriori}.
+They are compared to the reference distribution, that has been produced by \sherpa{} using NNPDF3.0 explicitly, at three different scales.
+The results are shown in \cref{fig:pdfvar_hnlo_appl,fig:pdfvar_hnlo_fnlo} for \appl{} and \fnlo{}, respectively.
+Again, we observe a very good reproduction.
+The magnitude of the errors is similar to the results of the previous section (cf. \cref{fig:scalesvar_hnlo_appl,scalesvar_hnlo_fnlo}).
+As has already been explained above, the discrepancies in the \appl{} plot at low $p_\perp$ originate from an insufficient phasespace run that did not cover the whole $x$-range.
+They do not indicate any problems with the interpolation (which is proven by the \fnlo{} result in \cref{fig:pdfvar_hnlo_fnlo}) and are fixable.
 %
 \begin{figure}
 	\centering
@@ -243,7 +252,7 @@ Using a larger phasespace run, the inaccuracies with \appl{} would of course van
 	\centering
 	\includegraphics[width=\textwidth]{images/pdfvar_hnlo_fnlo.pdf}
 	\caption{PDF variation fnlo}
-	\label{fig:pdf_hnlo_fnlo}
+	\label{fig:pdfvar_hnlo_fnlo}
 \end{figure}
 %
 %
