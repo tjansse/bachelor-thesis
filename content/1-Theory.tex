@@ -450,33 +450,21 @@ where the $x$ and $x'$ are the Björken-$x$ before and after initial state branc
 Moreover, $i$ and $j$ denote the parton flavours before the branching and the $f^{(k)}$ provide the correct form of the PDF depending on the type of branching.
 They are given explicitly in \cite{mcgrid2013}.
 
-Provided that all event weights have been stored, using a different PDF is as simple as multiplying each weight with the new PDF $\subpdf^\text{new}_{s_e}(x_1,x_2,\mu_F^2)$.
-The value of $\alpha_s$ can be changed similarly.
-To vary the scales, only $\alpha_s$ and $\subpdf_{s_e}$ have to be reevaluated as the weights themselves do not depend on the scales.
-
-At NLO the reweighting becomes more involved.
-The event weights now depend explicitely on the scales and due to the appearance of divergences in the calculaion of the parton-level cross sections, a method for cancelling these divergences has to be used.
-In the following, we will examine the method used by \mcgrid{} to reweight NLO calculations.
-It expects, that the events are generated using the Catani-Seymour dipole subtraction method \cite{catani_seymour1997}, which is a general algorithm for the automatic calculation of arbitrary jet cross sections at NLO.
-It is based on the subtraction method introduced in \secref{sec:nlo_calculations}.
-
-As we have seen, the subtraction method splits the calculation into four parts: The Born (B), virtual (V), integrated subtraction (I) and real subtraction (RS) part.
-All of these have to be handled differently.
-How this is done in detail can be seen in the original \mcgrid{} paper \cite{mcgrid2013}.
-The important result is, that if we treat the different contributions as single events, the NLO result can be written in a form similar to the LO expression \eqref{eq:reweight_lo}:
+We can dispose of the weights $w^{(1)}$ and $w^{(2)}$ by chosing a central scale.
+If we furthermore project the contributions from $w^{(3)}$ and $w^{(4)}$ onto separate events, we can write the total NLO cross section in the compact form
 %
 \begin{equation}
-  \sigma^\text{NLO}_{pp \rightarrow X} = \sum_{e=1}^{N_\text{evt}} \left( \frac{\alpha_s(\mu_R^2)}{2 \pi} \right)^{p_e} w_e(k_e) \subpdf_{s_e}(x_1,x_2,\mu_F^2) \, ,
+  \sigma^\text{NLO}_{pp \rightarrow X} = \sum_{e=1}^{N_\text{evt}} \alpha_s^{p_e}(\mu_R^2) \pdf_1(x_1,\mu_F^2) \pdf_2(x_2,\mu_F^2) w_e \, ,
   \label{eq:reweight_nlo}
 \end{equation}
 %
-where $p_e$ is the order in $\alpha_s$ of the respective event, i.e.\ $p_e = p_\text{LO}$ for B events and $p_e = p_\text{LO} + 1$ for I, V and RS events.
-This allows for simple \textit{a posteriori} parameter variation analogous to the LO case.
+
+Provided that all event weights have been stored, it is now possible to change the values of $\alpha_s$, $\mu_R$ and $\mu_F$ or use a different PDF \textit{a posteriori}.
 %
 \section{Interpolation grids}
 Despite the advantage towards regenerating all events for the variation of a single parameter, the reweighting approach is still not a satisfying solution for many use cases.
 The whole event record has to be stored, which can easily reach many gigabytes in high statistics computations.
-The storing and reprocessing of the events may be a chellenge by itself and is not convenient if more than a few parameter variations have to be performed.
+The storing and reprocessing of the events may be a challenge by itself and is not convenient if more than a few parameter variations have to be performed.
 One therefore whishes to somehow decrease the resource requirements without losing a significant amount of accuracy.
 In the ideal case, it should be mostly independent on the statistics.
 A possible solution is the use of interpolating grids to represent the PDFs and event weights.
