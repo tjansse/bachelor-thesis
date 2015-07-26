@@ -98,7 +98,11 @@ A sample of \num{10} million events is used to fill the grids.
 Using the high precision grid, all errors are below \SI{0.1}{\percent}.
 \appl{} and \fnlo{} show roughly the same accuracy.
 The effect of using a smaller grid is considerably bigger for the $p_\perp$ distributions than for the rapidity distributions.
-It is also bigger for \appl{} than for \fnlo{}.
+This can be understood by looking back at \cref{fig:hpt_compare,fig:hy_compare} in \cref{sec:xtransform}.
+There we saw, that high values of $x$ are completely negligible for the rapidity distribution and that it can be interpolated very well by using a logarithmic transformation.
+The $p_\perp$ distribution is still dominated by small values of $x$, but compared to the rapidity large $x$-values have a bigger influence.
+Thereby, the interpolation is not as optimal.
+Here, the smaller grid also has a more severe impact on the \appl{} result than on the \fnlo{} one.
 
 With one jet (\cref{fig:hjnlo_validation}), the errors in the reproduction of the $p_\perp$ become notably larger.
 Even with the high precision grid, \fnlo{} produces errors for individual bins of the $p_\perp$ distributions, that are large compared to the other bins.
@@ -108,16 +112,16 @@ The main difference between the two packages that remains in the used configurat
 Both use a kind of Lagrangian polynomials, but the implementations differ.
 It might be possible, that the function used by \appl{} is more appropriate in this case.
 Nonetheless, the reproduction of the rapidity distributions is still very good with all grids.
-
-
-There are comparatively large outliers using the lower precision grids.
-Nonetheless, with the high precision grids the errors are still within \SI{0.3}{\percent}.
+This is because the rapidity is not much influenced by additional jets.
 
 The case of two jets is shown in \cref{fig:hjjnlo_validation}.
-Here the grid with \num{50} bins produces relatively large errors.
-Though the plot does not comprise this, the highest errors are at the order of one percent.
-However \textcolor{red}{\ldots}
-
+Here the grids with \num{50} bins produce relatively large errors.
+With the high precision grid, however, \appl{} still allows a very good reproduction.
+\fnlo{}, by contrast, features large outliers with errors of several percent.
+This can be attributed to the statistics.
+\Cref{fig:hpt_100m} proves that the reproduction is much better with a 100 million event sample, albeit still being worse than with \appl{}.
+The problem with the $H + 2j$ process is that the event generator produces many negative weights, so that high statistics is needed to obtain a smooth distribution.
+For some reason, this affects \fnlo{} more than \appl{}.
 
 
 %
@@ -183,6 +187,24 @@ However \textcolor{red}{\ldots}
 \caption{H+2j NLO}
 \label{fig:hjjnlo_validation}
 \end{sidewaysfigure}
+%
+%
+\begin{figure}
+	\centering
+	\begin{subfigure}[]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{images/hjnlo_hpt_100m.pdf}
+		\caption{$H + 1j$}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{images/hjjnlo_hpt_100m.pdf}
+		\caption{$H + 2j$}
+	\end{subfigure}
+	\caption{The effect of higher statistics on the interpolation.
+				With two jets the 100 million event sample gives notably better results than the 10 million event sample in \cref{fig:hjnlo_validation,fig:hjjnlo_validation}.
+				With one jet the errors are roughly the same.}
+	\label{fig:hpt_100m}
+\end{figure}
 %
 
 
