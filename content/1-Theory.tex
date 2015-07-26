@@ -394,54 +394,61 @@ Including the Born contribtion we arrive at the expression
 which now only consists of finite terms.
 
 The subtraction method can be generalized to arbitrary hadronic cross sections, provided that the definition of the observables allows the cancellation of the divergences.
-In simplified terms, it always leads to an expression of the form
-%
-\begin{equation}
-	\sigma^\text{NLO}_{pp \rightarrow X} = \int \dif \hat \sigma^B + \int \dif \hat \sigma^V + \int \dif \hat \sigma^I + \int \dif \hat \sigma^{RS} \,
-\end{equation}
-%
-consisting of a Born (B), a virtual (V), an integrated subtraction (I) and a real subtracted (RS) term.
-All of these terms are seperately finite.
 %
 \section{Reweighting QCD calculations}
 Often it is needed to vary the parameters in QCD calculations, for example the scale variables and PDFs to estimate the uncertainty.
 When the number of variations becomes large, it is not practical to rerun the whole event generation for each calculation as the time and resource consumption become too high.
 Instead it is possible to reuse information from previously generated events and combine them with the new parameters.
-For a leading order calculation, this is straightforward:
-Consider the leading order parton model cross section for producing an arbitrary final state X:
+Here we consider an NLO calculation using Catani-Seymour subtraction \cite{catani_seymour1997}, which is the scheme implemented in \sherpa{} and \mcgrid{}.
+Other subtraction schemes can be used as well, as is demonstrated in \cite{amcfast} for the FKS scheme \cite{fks_a,fks_b}.
+
+The total cross section can be separated into four finite terms:
 %
 \begin{equation}
-	\sigma_{pp \rightarrow X} = \sum_{i,j} \int \dif x_1 \dif x_2 \int \dif \Phi_n \left( \frac{\alpha_s(\mu_R^2)}{2 \pi} \right)^{p_\text{LO}} \pdf_i(x_1,\mu_F^2) \pdf_j(x_2,\mu_F^2) \dif \hat\sigma_{ij \rightarrow X} \, .
+	\sigma^\text{NLO}_{pp \rightarrow X} = \int \dif \hat \sigma^B + \int \dif \hat \sigma^V + \int \dif \hat \sigma^I + \int \dif \hat \sigma^{RS} \,
 \end{equation}
 %
-The squared matrix element for the parton-level subprocess $2 \rightarrow n$ is denoted by $\dif \hat\sigma_{ij \rightarrow X}$, differential in the phase space $\dif \Phi_n$.
-We can group subprocesses $s$ with the same parton-level cross section into a cumulated parton density $\subpdf_s(x_1,x_2,\mu_F^2)$ and write 
+They correspond to the Born (B), virtual (V), integrated subtraction (I) and real subtraction (RS) parts of the calculation.
+We need to work out the explicit dependence on the parameters to accurately reweight them.
+
+For the B and RS terms this is straightforward as they resemble LO calculations.
+Making use of the factorization theorem we can write them in the form
 %
 \begin{equation}
-	\sigma_{pp \rightarrow X} = \int \dif x_1 \dif x_2 \int \dif \Phi_n \left( \frac{\alpha_s(\mu_R^2)}{2 \pi} \right)^{p_\text{LO}} \subpdf_s(x_1,x_2,\mu_F^2) \dif \hat\sigma_{ij \rightarrow X} \, .
+	\sigma^{B/RS} = \sum_{i,j} \int \dif x_1 \dif x_2 \int \dif \Phi_n \left( \frac{\alpha_s(\mu_R^2)}{2 \pi} \right)^p \pdf_i(x_1,\mu_F^2) \pdf_j(x_2,\mu_F^2) \dif \hat\sigma \, ,
 \end{equation}
 %
-Rewriting this in a form that can be computed by a Monte Carlo algorithm on a per-event basis, we arrive at
+where for the B term $p = p_\text{LO}$ and for the RS term $p = p_\text{LO} + 1$.
+Using Monte Carlo integration, we can rewrite this as a sum over generated events:
 %
 \begin{equation}
-  \sigma_{pp \rightarrow X} = \sum_{e=1}^{N_\text{evt}} \left( \frac{\alpha_s(\mu_R^2)}{2 \pi} \right)^{p_\text{LO}} w_e(k_e) \subpdf_{s_e}(x_1,x_2,\mu_F^2) \, .
+  \int \dif \hat \sigma^{B/RS} = \sum_{e=1}^{N_\text{evt}} \alpha_s^p(\mu_R^2) \pdf_1(x_1,\mu_F^2) \pdf_2(x_2,\mu_F^2) w_e^{(0)} \, ,
   \label{eq:reweight_lo}
 \end{equation}
 %
-The event weight $w_e(k_e)$ is given by
+where the weight $w_e^{(0)}$ contains the parton-level matrix element squared and is completely independent of the QCD input parameters.
+
+The virtual part occupies a more complicated structure because the weights depend on the renormalization scale.
+It takes the form
 %
 \begin{equation}
- 	w_e(k_e) = \Pi_\text{ps}(k_e) \Theta(k_e - k_\text{cuts}) \dif \hat\sigma_e
+	\int \dif \hat \sigma^V = \sum_{e=1}^{N_\text{evt}} \alpha_s^{p_\text{LO} + 1}(\mu_R^2) \pdf_1(x_1,\mu_F^2) \pdf_2(x_2,\mu_F^2) \left\{ w_e^{(0)} + l_R w_e^{(1)} + l_R^2 w_e^{(2)} \right\} \, ,
 \end{equation}
 %
-and represents the subprocess cross section $\dif \hat\sigma_e$ with respect to the phase space weight $\Pi_\text{ps}(k_e)$ and the kinematic cuts.
-The kinematic parameters for each event are combined in
+with renormalization scale logarithms $l_R = \log\left(\frac{\mu_r^2}{\mu_{R,0}^2} \right)$, where $\mu_{R,0}$ is the scale at which $w_e^{(1)}$ and $w_e^{(2)}$ were originally evaluated.
+
+In the I part, the event weights have a complex dependence on the PDF.
+The full structure can be written as
 %
-\begin{equation}
-  k_e = \left\{ p_1 , \dots , p_n , x_1 , x_2 \right\} \, ,
-\end{equation}
+\begin{align}
+	\int \dif \hat \sigma^I = \sum_{e=1}^{N_\text{evt}} &\alpha_s^{p_\text{LO} + 1}(\mu_R^2) \left\{ \vphantom{\left( \sum_{k=1}^4 \right)} f_1(i,x_1,\mu_F^2) w_e^{(0)} f_2(j,x_2,\mu_F^2) \right. \nonumber \\
+								&+ \left( \sum_{k=1}^4 f_1^{(k)}(i,x_1,x'_1,\mu_F^2) w_{e,k}^{(3)} \right) f_2(j,x_2,\mu_F^2) \nonumber \\
+								&\left. + f_1(j,x_1,\mu_F^2) \left( \sum_{k=1}^4 w_{e,k}^{(4)} f_2^{(k)}(j,x_2,x'_2,\mu_F^2) \right) \right\} \, ,
+\end{align}
 %
-where the $p_i$ denote the involved partons.
+where the $x$ and $x'$ are the Björken-$x$ before and after initial state branching.
+Moreover, $i$ and $j$ denote the parton flavours before the branching and the $f^{(k)}$ provide the correct form of the PDF depending on the type of branching.
+They are given explicitly in \cite{mcgrid2013}.
 
 Provided that all event weights have been stored, using a different PDF is as simple as multiplying each weight with the new PDF $\subpdf^\text{new}_{s_e}(x_1,x_2,\mu_F^2)$.
 The value of $\alpha_s$ can be changed similarly.
