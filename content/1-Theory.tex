@@ -286,8 +286,20 @@ The evolution of the splitting with the decreasing scale is given by the DGLAP e
 In this context the PDFs do not describe the momentum distributions of the partons inside of a hadron, but rather the distribution of the momentum fractions of the partons resulting from the splitting.
 
 The computation of parton showers can be formulated in a way that is well suited for a Monte Carlo program.
-When the parton shower program is combined with a hadronization model, that combines both the initial state and the final state partons into colorless hadrons, we call the result a \textit{parton shower Monte Carlo event generator}.
+We can combine the parton shower program with a hadronization model, that combines both the initial state and the final state partons into colorless hadrons, beginning at the cutoff scale of the shower. We call the result a \textit{parton shower Monte Carlo event generator}.
 It is a powerful tool that is able to fully simulate QCD events in hadron collisions.
+
+The main disadvantage of parton shower generators is that they are not guaranteed to properly describe events that include hard and large-angle emissions.
+Those events are, however, correctly described by fixed order calculations.
+To combine the benefits of both, algorithms have been developed that merge LO matrix elements and parton showers with different multiplicities (MEPS).
+The main issue in the course of this is double counting.
+An event with $n$ partons in the final state can either be the product of an $n$-parton matrix element that has been showered with only soft and collinear emissions or it could be the product of an $(n-1)$-parton matrix element for which the showering led to the emission of a hard, large-angle gluon.
+Those cases have to be carefully seperated to avoid an overrepresentation of the related phase space region.
+The most widely used methods to avoid double counting are CKKW matching \cite{ckkw_a,ckkw_b} and MLM matching \cite{mlm_a,mlm_b}.
+
+Another problem of parton shower predictions is that they suffer from strong scale dependence because they are based on LO matrix elements.
+Promoting parton showers to NLO accuracy is a much harder task because of divergent event weights.
+Nonetheless, there are methods to circumvent this problem and the two widely used solutions are \mcatnlo{} \cite{mcatnlo} and \powheg{} \cite{powheg_a,powheg_b,powheg_c}.
 %
 \begin{figure}[]
 	\includegraphics[width=0.5\textwidth]{images/partonshower.pdf}
