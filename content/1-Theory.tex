@@ -478,26 +478,20 @@ It can be approximated as a sum over discrete grid points using interpolation fu
 	\pdf(x,Q^2) = \sum_{i=0}^{N_x} \sum_{j=0}^{N_Q} \pdf(x_i,Q_j^2) I_i^{(N_x)}(x_1) I_j^{(N_Q)}(Q^2) \, .
 \end{equation}
 %
-Transferred to the subprocess PDF $\subpdf_s(x_1,x_2,Q^2)$ defined above, the interpolation takes the form
-%
-\begin{equation}
-	\subpdf_s(x_1,x_2,Q^2) = \sum_{i,j=0}^{N_x} \sum_{k=0}^{N_Q} \subpdf_s(x_i,x_j,Q_k^2) I_i^{(N_x)}(x_1) I_j^{(N_x)}(x_2) I_k^{(N_Q)}(Q^2) \, .
-\end{equation}
-%
-Consequently, we can write \eqref{eq:reweight_nlo} as
+Consequently, we can write \cref{eq:reweight_nlo} as
 %
 \begin{alignat}{3}
-  \sigma^\text{NLO}_{pp \rightarrow X}	&= \sum_{e=1}^{N_\text{evt}} \sum_{i,j=0}^{N_x} \sum_{k=0}^{N_Q} \left( \frac{\alpha_s(Q_k^2)}{2 \pi} \right)^{p_e} &&w_e(k_e) \subpdf_{s_e}(x_i,x_j,Q_k^2) \nonumber \\
+  \sigma^\text{NLO}_{pp \rightarrow X}	&= \sum_{e=1}^{N_\text{evt}} \sum_{i,j=0}^{N_x} \sum_{k=0}^{N_Q} &&\alpha_s^{p_e}(Q_k^2) \pdf_1(x_i,Q_k^2) \pdf_2(x_j,Q_k^2) w_e \nonumber \\
   										&	&&\cdot I_i^{(N_x)}(x_1) I_j^{(N_x)}(x_2) I_k^{(N_Q)}(Q^2) \nonumber \\
-  										&= \mathrlap{\sum_p \sum_{s=0}^{N_\text{sub}} \sum_{i,j=0}^{N_x} \sum_{k=0}^{N_Q} \left( \frac{\alpha_s(Q_k^2)}{2 \pi} \right)^{p} W_{i,j,k}^{(p),(s)}(k_e) \subpdf_{s}(x_i,x_j,Q_k^2) \, ,}
+  										&= \mathrlap{\sum_p \sum_{i,j=0}^{N_x} \sum_{k=0}^{N_Q} \alpha_s^p(Q_k^2) \pdf_1(x_i,Q_k^2) \pdf_2(x_j,Q_k^2) W_{i,j,k}^{(p)} \, ,}
 \end{alignat}
 %
-where $p$ is the perturbative order, $N_\text{sub}$ is the number of different subprocesses and the interpolated weights $W_{i,j,k}^{(p),(s)}(k_e)$ are processed as a sum over the events:
+where $p$ is the perturbative order and the interpolated weights $W_{i,j,k}^{(p)}$ are processed as a sum over the events:
 \begin{equation}
-	W_{i,j,k}^{(p),(s)} = \sum_{e=1}^{N_\text{evt}} \delta_{p,p_e} \delta_{s,s_e} I_{i,j,k}^{(N_x) (N_Q)}(k_e) w_e(k_e) I_i^{(N_x)}(x_1) I_j^{(N_x)}(x_2) I_k^{(N_Q)}(Q^2) \, .
+	W_{i,j,k}^{(p)} = \sum_{e=1}^{N_\text{evt}} \delta_{p,p_e} w_e I_i^{(N_x)}(x_1) I_j^{(N_x)}(x_2) I_k^{(N_Q)}(Q^2) \, .
 \end{equation}
 %
-Now the sum over the events is completely absorbed into the definition of the interpolated weights.
+Now the sum over the events has been completely absorbed into the definition of the interpolated weights.
 These can be calculated in a single run of the event generator and be stored efficiently.
 The calculation of the cross section has become a simple sum over the grid points and thus is much faster for a large number of events.
 The approach can easily be extended to histogrammed data like differential cross sections by defining the observable bins and computing one weight $W_{i,j,k}^{(p),(s),(b)}$ for each bin $b$.
