@@ -314,43 +314,12 @@ Nonetheless, there are methods to circumvent this problem and the two widely use
 
 
 There are two general methods that are commonly used to take care of the infrared divergences in NLO calculations, namely the \textit{slicing method} and the \textit{subtraction method}.
-We can demonstrate both methods with a simple example similar to the depiction in \cite{slicing_vs_subtraction}.
-Consider the integral
-%
-\begin{equation}
-	I = \lim_{\epsilon \rightarrow 0} \left( \int_0^1 \frac{\dif x}{x} x^\epsilon F(x) - \frac{1}{\epsilon} F(0) \right) \, ,
-\end{equation}
-%
-where $F(x)$ is an arbitrary function that depends on $x$.
-The first term contains a singularity at $x=0$ and is divergent in the limit $\epsilon \rightarrow 0$.
-This divergence is canceled by the second term.
-The parameter $\epsilon$ can be compared to the parameter used in dimensional regularization.
-As a consequence of $F(x)$ being arbitrary complex, the integral can not be solved analytically.
-However, in this form it is also not well-suited for a numerical evalution because of the presence of $\epsilon$ in the integrand.
+The slicing method introduces a small parameter $\delta$, which slices the integration region into two pieces so that it can be computed numerically.
+A residual dependency on $\delta$ remains, which should be neglectable if $\delta$ is small.
+However, this has to be checked in an actual calculation.
+The advantage of the subtraction method is that it does not involve any approximations.
 
-In the slicing method, one introduces a small parameter $\delta$, which slices the integration region into two pieces, so that the integral can be written in the following way:
-%
-\begin{align}
-	I 	&= \lim_{\epsilon \rightarrow 0} \left( \int_0^\delta \frac{\dif x}{x} x^\epsilon F(x) + \int_\delta^1 \frac{\dif x}{x} x^\epsilon F(x) - \frac{1}{\epsilon} F(0) \right) \nonumber \\
-		&= \lim_{\epsilon \rightarrow 0} \left( F(0) \int_0^\delta \frac{\dif x}{x} x^\epsilon - \frac{1}{\epsilon} F(0) \right) + \int_\delta^1 \frac{\dif x}{x} F(x) + \order{\delta} \nonumber \\
-		&= F(0) \lim_{\epsilon \rightarrow 0} \frac{\delta^\epsilon - 1}{\epsilon} + \int_\delta^1 \frac{\dif x}{x} F(x) + \order{\delta} \nonumber \\
-		&= F(0) \ln \delta + \int_\delta^1 \frac{\dif x}{x} F(x) + \order{\delta} \, .
-\end{align}
-%
-Therefore, the dependence on $\epsilon$ has vanished completely and the remaining integral can be computed numerically.
-The terms $\order{\delta}$ are neglectable if $\delta$ is small.
-In an actual calculation, one would have to check that the result does not depend on the choice of $\delta$.
-
-The subtraction method does not involve any approximations.
-Instead, one rewrites the integral in the form
-%
-\begin{align}
-	I	&= \lim_{\epsilon \rightarrow 0} \left( \int_0^1 \frac{\dif x}{x} x^\epsilon [F(x) - F(0)] + F(0) \int_0^1 \frac{\dif x}{x} x^\epsilon - \frac{1}{\epsilon} F(0) \right) \nonumber \\
-		&= \int_0^1 \frac{\dif x}{x} [F(x) - F(0)] \, ,
-\end{align}
-%
-which automatically leads to a form that can be evaluated by a numerical integration algorithm.
-We can take a look at how this method works in a somewhat more realistic calculation.
+We can demonstrate the subtraction method with a simple example, that has been adopted from \cite{mcatnlo}.
 Consider the expression for the expectation value of an infrared-safe observable $O$ at NLO accuracy, consisting of a Born (B), a virtual (V) und a real (R) term:
 %
 \begin{equation}
@@ -367,9 +336,8 @@ We assume that the cross sections can be written as
 %
 where $B$ and $V$ are constant factors and $\lim_{x \rightarrow 0} R(x) = B$.
 $a$ denotes the coupling constant.
-This model has been adapted from \cite{mcatnlo}.
 Obviously, both the real and the virtual part are divergent in the limit $\epsilon \rightarrow 0$.
-Using the subtraction method analogous to the case above, we can rewrite the real contribution to obtain
+Using the subtraction method, we can rewrite the real contribution to obtain
 %
 \begin{align}
 	\left< O \right>_R	&= a \lim_{\epsilon \rightarrow 0} \int_0^1 \frac{\dif x}{x^{1+2 \epsilon}} O(x) R(x) \nonumber \\
@@ -392,7 +360,7 @@ Including the Born contribtion we arrive at the expression
 \end{equation}
 %
 which now only consists of finite terms.
-
+The remaining integral can be evaluated using Monte Carlo methods.
 The subtraction method can be generalized to arbitrary hadronic cross sections, provided that the definition of the observables allows the cancellation of the divergences.
 %
 \section{Reweighting QCD calculations}
