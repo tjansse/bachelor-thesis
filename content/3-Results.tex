@@ -223,15 +223,26 @@ Another method, called \enquote{flexible-scale table}, is also implemented in \f
 It stores fully scale-independent weights and allows for arbitrary and independent variation of the scale factors without the need of splitting functions.
 As this feature is not yet implemented in \mcgrid{} (but will be in a future release), the first method is used in the following calculations.
 
-The reference histograms are again gnerated with Sherpa using the CT10 pdf.
+The reference histograms are again generated with Sherpa using the CT10 PDF.
 One central scale $\mu_R = \mu_F = m_H$ and two additional scales $2 \mu$ and $\frac{1}{2} \mu$ are used.
 During the central scale run, grids for the transverse momentum of the Higgs boson are filled by \appl{} and \fnlo{} using an \mcgrid{}-enabled \rivet{} analysis.
 This is done for Higgs production with zero and one jets using an event sample of 100 million events in each case.
 In \cref{fig:scalesvar_hnlo_appl,fig:scalesvar_hnlo_fnlo} the reference distributions are compared to the results from \appl{} and \fnlo{} in the 0-jet case.
-It can be seen that the accuracy is very good in both cases.
-The discrepancies at low $p_\perp$ in \cref{fig:scalesvar_hnlo_appl} are due to an insufficient phasespace run, meaning that during the fill run $x$-values emerged that were not expected by \appl{}.
+We observe a strong scale dependence, indicating that higher order terms entail large corrections.
+This turns out to be true \cite{gfusionnnlo1,gfusionnnlo2}.
+It can be seen, that the accuracy of the reproduction is very good in both cases.
+The discrepancies at low $p_\perp$ in \cref{fig:scalesvar_hnlo_appl} are due to an insufficient phasespace run (the first ten million events have been used), meaning that during the fill run $x$-values emerged that were not expected by \appl{}.
 The \fnlo{} grid was prepared with the same phasespace run and obviously it responds to these events in a different way resulting in a precise reproduction throughout the range of considered values.
 Using a larger phasespace run, the inaccuracies with \appl{} would of course vanish.
+
+In the 1-jet case, shown in \cref{fig:scalesvar_hjnlo_appl,fig:scalesvar_hjnlo_fnlo}, the scale dependence is more complicated.
+Still, \appl{} is able to reproduce all three scales at the permille level.
+\fnlo{}, on the contrary, shows an unexpected behaviour.
+There are systematic deviations that increase towards high transverse momenta.
+As the error is definitely not caused by statistical fluctuations and because the central scale is reproduced very well, there is probably a mistake in the implementation of the evolution.
+A similar behaviour can be observed with \appl{} as well, when the 2-jet case is considered.
+Therefore, this does not seem to be a problem of \fnlo{} alone.
+This problem is object of further investigations.
 %
 \begin{figure}
 	\centering
