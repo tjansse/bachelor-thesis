@@ -5,8 +5,8 @@
 \section{???}
 \label{sec:xtransform}
 \appl{} and \fnlo{} do not use the momentum fraction $x$ and the factorization scale $Q^2$ directly in their grids.
-Instead they provide transformations that are supposed to achieve better coverage of the values.
-In the following we will concentrate on the $x$ distribution, which is more crucial to the number of grid points needed.
+Instead, they provide transformations that are supposed to achieve better coverage of the values.
+In the following, we will concentrate on the $x$ distribution, which is more crucial to the number of grid points needed.
 The functions provided by \appl{} are:
 %
 \begin{align}
@@ -29,12 +29,12 @@ The functions (normalized to the domain $[0,1]$ for comparability) are shown in 
 \end{figure}
 %
 All transformations increase the point density in the low $x$ region, where most events should fall into.
-Compared against $f_0$, the other functions also accomplish a higher point density in the high $x$ region.
+Compared against $f_1$, the other functions also accomplish a higher point density in the high $x$ region.
 Some observables in specific processes might benefit from this.
 
 We can look at the actual $x$ distribution in the process considered in this thesis.
 In \figref{fig:x_compare} it is plotted for one of the gluons involved in the process $gg \rightarrow H + j$ at leading order for a center-of-mass energy of $\sqrt{s} = \SI{13}{\tera\electronvolt}$.
-For comparison, the respective distribution for the functions $f_1$ to $f_4$ is also shown.
+For comparison, the respective distribution for the functions $f_0$ to $f_3$ is also shown.
 In the bare distribution, the number of events per bin increases rapidly towards low $x$.
 It is obvious that the reproduction of the low $x$ region is poor for this linear binning.
 We expect that for some $x>0$ the number of events approaches zero, because there has to be at least enough momentum transfer to produce the Higgs boson and the jet.
@@ -55,8 +55,15 @@ The function $f_1(x)$ looks most promising, as it allocates many bins for the pe
 
 If we want to be more specific, we can extract the dependence of the observables on $x$ and $f(x)$, respectively, from the generated events.
 This is shown in \figref{fig:hpt_compare} for the transverse momentum $p_\perp$ and in \figref{fig:hy_compare} for the rapidity $y$ of the Higgs boson.
-For both observables all considered functions are reasonable.
-Again, the function $f_1(x)$ seems to be best suited.
+We see that the rapidity heavily depends on low $x$ values.
+One half of the contributions comes from values $x \leq \num{0.03}$.
+Values above \num{0.3} are in practice negligible.
+The transformations reveal a substructure of the peak that is impossible to see with the linear binning.
+Compared to the rapidity, the transverse momentum has a higher percentage of high $x$ values.
+Nevertheless, it is still dominated by the low $x$ region.
+
+For both observables all considered functions are a reasonable choice.
+Especially for the rapidity, the function $f_1(x)$ seems to be best suited.
 Hence, it will be the transformation used in all following grid calculations.
 %
 \begin{figure}[]
