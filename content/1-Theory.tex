@@ -519,7 +519,8 @@ with $\gluonpdf(x,\mu_F^2)$ denoting the gluon PDF.
 
 The QCD corrections are composed of virtual corrections to the vertices and propagators, real gluon radiation in the initial state and the contributions of the subprocesses $gq \rightarrow Hq$ and $q \bar q \rightarrow Hg$.
 Exemplary diagrams for the corrections are shown in \figref{fig:ggh_corrections}.
-
+The full NLO cross section has been calculated in \cite{gfusionnlo1,gfusionnlo2,gfusionnlo3}.
+They increase the cross section by a factor of \num{1.5} to \num{1.7}.
 %
 \begin{figure}
 \centering
@@ -558,20 +559,9 @@ Exemplary diagrams for the corrections are shown in \figref{fig:ggh_corrections}
 \end{figure}
 %
 
-The NLO QCD corrections to the cross section have been calculated in \cite{gfusionnlo1}.
-They increase the cross section by a factor of \num{1.5} to \num{1.7}.
 In the limit where the top quark has infinite mass, $m_t \rightarrow \infty$, the form factor takes the value $\frac{4}{3}$.
-This allows for an analytical expression for the corrections \cite{gfusionnlo2}, which is very well suited for numerical calculations.
-It can be considered as an extension of the Standard Model, where the Higgs boson couples directly to gluons (effective Higgs coupling).
-In many cases, this is a rather good approximation \cite{symmetrybreaking1}.
-
-The NNLO corrections have been calculated in \cite{gfusionnnlo1, gfusionnnlo2}.
-
-
-A fully differential NNLO calculation exists for $H + 0-\text{jet}$ production \cite{ggh_nnlo_fullydiff_1,ggh_nnlo_fullydiff_2} and substantial progress has been achieved towards an NNLO calculation of the $1-\text{jet}$ cross section \cite{gghj_nnlo_progress}.
-The fully differential NLO cross section is available for $H + 1-\text{jet}$ \cite{gghj_nlo_fullydiff_1,gghj_nlo_fullydiff_2}, $H + 2-\text{jets}$ \cite{gghjj_nlo_fullydiff_1,gghjj_nlo_fullydiff_2} and $H + 3-\text{jets}$ \cite{gghjjj_nlo_fullydiff}.
-
-
+This allows for an analytical expression of the corrections \cite{gfusionnlo2}.
+It can be considered as an extension of the Standard Model, where the Higgs boson couples directly to gluons, known as effective Higgs coupling (cf. \cref{fig:heft}).
 The effective Lagrangian for Higgs gluon interaction can be written as \cite{gfusionnnlo2}
 %
 \begin{equation}
@@ -591,6 +581,7 @@ The coefficient $C_1$, in the \msbar{} scheme, is given by
 %
 where the number of active flavors should be set to $n_f = 5$.
 According to \cite{gfusionnnlo2}, at LO this approximation is accurate within \SI{5}{\percent} for $m_H \approx \SI{150}{\giga\electronvolt}$ (which is close to the measured value $m_H \approx \SI{126}{\giga\electronvolt}$) and improves at NLO.
+All calculations in this thesis are based on effective Higgs coupling.
 %
 \begin{figure}[]
 	\includegraphics[width=0.5\textwidth]{images/heft.pdf}
@@ -599,6 +590,9 @@ According to \cite{gfusionnnlo2}, at LO this approximation is accurate within \S
 \end{figure}
 %
 
+Besides the basic process, the fully differential NLO cross sections are available for $H + 1$ jet \cite{gghj_nlo_fullydiff_1,gghj_nlo_fullydiff_2}, $H + 2$ jets \cite{gghjj_nlo_fullydiff_1,gghjj_nlo_fullydiff_2} and $H + 3$ jets \cite{gghjjj_nlo_fullydiff}.
+A fully differential NNLO calculation exists for $H + 0$ jets production \cite{ggh_nnlo_fullydiff_1,ggh_nnlo_fullydiff_2} and substantial progress has been achieved towards an NNLO calculation of the $H + 1$ jets cross section \cite{gghj_nnlo_progress}.
+%
 \section{Leptonic Higgs decay}
 In an experiment, one would never observe the Higgs boson directly but rather reconstruct it from the measured properties of its decay products.
 We want to approximate this situation by simulating the Higgs boson decay.
