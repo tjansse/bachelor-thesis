@@ -170,17 +170,17 @@
 \IfPackageLoaded{hyperref}{\pdfbookmark[1]{\contentsname}{toc}}
 \tableofcontents
 
-\IfPackagesLoaded{glossaries,longtable,tabu}{%
-  \clearpage
-  % print out acronym list   
-  \IfGlossariesStyleDefined{longtabuFancyHeader}%
-   {\printglossary[type=\acronymtype,style=longtabuFancyHeader]}%
-  % print out symbol list 
-  \IfGlossariesStyleDefined{longtabuFancyHeader}%
-   {\printglossary[type=symbolslist,style=longtabuFancyHeader]}%
-  % print out glossary
-  \printglossary[style=altlist]
-} % end of glossaries
+%\IfPackagesLoaded{glossaries,longtable,tabu}{%
+%  \clearpage
+%  % print out acronym list   
+%  \IfGlossariesStyleDefined{longtabuFancyHeader}%
+%   {\printglossary[type=\acronymtype,style=longtabuFancyHeader]}%
+%  % print out symbol list 
+%  \IfGlossariesStyleDefined{longtabuFancyHeader}%
+%   {\printglossary[type=symbolslist,style=longtabuFancyHeader]}%
+%  % print out glossary
+%  \printglossary[style=altlist]
+%} % end of glossaries
 
 % --- Main Document --- --- --- --- --- --- ---
 \mainmatter

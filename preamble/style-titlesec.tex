@@ -25,15 +25,49 @@
 
 %--> chapter with 'chapter' + number + rule + name + rule
 % --------------------------------
+%\titleformat{\chapter}[display]               % {command}[shape]
+%  {\usekomafont{chapter}\Large \color{black}} % format
+%  {\LARGE\MakeUppercase{\chaptertitlename}%   % label
+%   \Huge~\thechapter \filright}%  
+%  {1pt}										  % sep (from chapternumber)
+%  {%
+%   \titlerule \vspace{0.9pc} % 
+%   \filright 
+%   \IfColorDefined{sectioncolor}{\color{sectioncolor}}{}   
+%  }                                           % (before chaptertitle and after)
+%  [\color{black} \vspace{0.9pc} \filright {\titlerule}] %
+%% --------------------------------
+
+%--> chapter with rule + number + name + rule
+% --------------------------------
 \titleformat{\chapter}[display]               % {command}[shape]
   {\usekomafont{chapter}\Large \color{black}} % format
-  {\LARGE\MakeUppercase{\chaptertitlename}%   % label
-   \Huge~\thechapter \filright}%  
+ % {\LARGE%\MakeUppercase{\chaptertitlename}%   % label
+  % \Huge~\thechapter \filright}%  
+  {\Huge}
   {1pt}										  % sep (from chapternumber)
   {%
    \titlerule \vspace{0.9pc} % 
    \filright 
    \IfColorDefined{sectioncolor}{\color{sectioncolor}}{}   
+   \LARGE~\thechapter\ 
+  }                                           % (before chaptertitle and after)
+  [\color{black} \vspace{0.9pc} \filright {\titlerule}] %
+% --------------------------------
+
+%--> numberless chapter (like ToC) with rule + name + rule
+% --------------------------------
+\titleformat{name=\chapter,numberless}[display]               % {command}[shape]
+  {\usekomafont{chapter}\Large \color{black}} % format
+ % {\LARGE%\MakeUppercase{\chaptertitlename}%   % label
+  % \Huge~\thechapter \filright}%  
+  {\Huge}
+  {1pt}										  % sep (from chapternumber)
+  {%
+   \titlerule \vspace{0.9pc} % 
+   \filright 
+   \IfColorDefined{sectioncolor}{\color{sectioncolor}}{}   
+   \LARGE
   }                                           % (before chaptertitle and after)
   [\color{black} \vspace{0.9pc} \filright {\titlerule}] %
 % --------------------------------
