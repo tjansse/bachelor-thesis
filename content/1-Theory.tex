@@ -36,13 +36,12 @@ where $\alpha_s \ll 1$ so that the series can be truncated after a few terms to 
 A straightforward way to determine the coefficients is the use of Feynman Diagrams.
 %
 \subsection{Renormalization and the running coupling}
-Calculations in perturbative QCD involve UV-divergent diagrams such as the one illustrated in \cref{fig:loop}, which gives a contribution to the gluon self-energy.
+Calculations in perturbative QCD involve UV-divergent integrals.
 Luckily QCD is a renormalizable theory and therefore the divergences can be handled by regularization and renormalization.
-As a consequence, the quantities appearing in the Lagrangian (the \enquote{bare} quantities) are not the same as the quantities we observe physically.
-The measured values depend on the energy scale, called \textit {renormalization scale} $\mu_R$, at which they are evaluated.
-This scale is arbitrary and unphysical and if we consider the whole perturbative series, the scale dependence vanishes.
-The scale dependence can be described by differential equations known as \textit{renormalization group equations}.
-For example, the equation for the coupling constant takes the form
+As a consequence, the quantities appearing in the Lagrangian (the \enquote{bare} quantities) are not the same as the quantities that are physically observed.
+In the renormalization process, an additional scale dependence is introduced which vanishes if we consider the whole perturbative series.
+The evolution of quantities with the renormalization scale $\mu_R$ is described by differential equations known as \textit{renormalization group equations}.
+As an example, the \enquote{running} of the coupling constant is described by
 %
 \begin{equation}
   \dod{ \alpha_{s} ( \mu_R^{2} ) }{ \ln{\mu_R^2} } = \beta(\alpha_s(\mu_R^2)) = - \alpha_s^2 (b_0 + b_1 \alpha_s + b_2 \alpha_s^2 + \dots) \, .
@@ -51,28 +50,27 @@ For example, the equation for the coupling constant takes the form
 %
 The minus sign in \cref{eq:rge} is responsible for the asymptotic freedom of QCD:
 As the momentum transfer becomes large, the strong coupling becomes weak so that quarks and gluons nearly behave as if they were free particles.
-%
-\begin{figure}[]
-	\includegraphics[width=0.3\textwidth]{images/loop.pdf}
-	\caption{UV-divergent loop diagram}
-	\label{fig:loop}
-\end{figure}
-%
+%%
+%\begin{figure}[]
+%	\includegraphics[width=0.3\textwidth]{images/loop.pdf}
+%	\caption{UV-divergent loop diagram}
+%	\label{fig:loop}
+%\end{figure}
+%%
 
-In leading order the analytic solution for \cref{eq:rge} is known as \textit{running couplig} and given by
+In leading order the analytic solution of \cref{eq:rge} is given by
 %
 \begin{equation}
-	\alpha_s(\mu_R^2) = \frac{\alpha_s(\mu_0^2)}{1 + b_0 \alpha_s(\mu_0^2) \ln \frac{\mu_R^2}{\mu_0^2}} = \frac{1}{b_0 \ln \frac{\mu_R^2}{\Lambda^2}} \quad \text{with} \quad b_0=\frac{11 N_C - 2 n_f}{12 \pi} \, ,
+	\alpha_s(\mu_R^2) = \frac{\alpha_s(\mu_0^2)}{1 + b_0 \alpha_s(\mu_0^2) \ln \frac{\mu_R^2}{\mu_0^2}} \quad \text{with} \quad b_0=\frac{11 N_C - 2 n_f}{12 \pi} \, ,
 \end{equation}
 %
-where $N_C$ is the number of colors and $n_f$ denotes the number of flavors.
-Note that this is only valid at scales where $n_f$ does not change.
-The first expression uses a reference scale $\mu_0$, where the value of $\alpha_s$ is known whereas the second one uses the constant $\Lambda$, which is the scale where the coupling would diverge.
+where $N_C$ is the number of colors and $n_f$ denotes the number of active flavors.
+This relates the coupling constant at a scale $\mu_R$ to the one at a reference scale $\mu_0$, where its value is known.
 %
-\section{The Parton Model}
+\section{From parton model to QCD}
 The parton model was introduced in 1969 by Richard P. Feynman to describe high-energy particle collisions involving hadrons \cite{feynman1969}.
-The basic assumption of the parton model is that all hadrons consist of point-like particles (partons) which are responsible for their behavior in interactions.
-In QCD these can be identified as quarks and gluons.
+The basic assumption of the parton model is that all hadrons consist of point-like spin-$\frac{1}{2}$ particles (partons) which are responsible for their behavior in interactions.
+%In QCD these can be identified as quarks and gluons.
 Furthermore, it is assumed that the hadron is in a reference frame where it carries infinite (or at least very high) momentum.
 In this infinite momentum frame the hadron suffers both Lorentz contraction and time dilation so that the distribution of partons within it does not change during the (vanishingly small) time of interaction.
 Thus each parton carries a definite fractional momentum $x$, with $0<x<1$.
@@ -81,18 +79,28 @@ Another important consequence is that the probability of a parton influencing th
 The reason this model works is the asymptotic freedom of the underlying theory.
 However, this also limits the applicability of the parton model to high energy cross sections.
 
-With the help of perturbative QCD, there is a class of reactions involving hadrons for which the cross sections can be calculated directly.
-These reactions are inclusive and do not contain any hadrons in the initial state.
-A simple example is lepton pair annihilation into hadrons.
-As the hadronic final state is fully inclusive, the cross section is identical to the electroweak cross section for $l+l' \rightarrow q \bar q$, where $l$ and $l'$ denote leptons and $q$ ($\bar q$) denotes a (anti-)quark.
-Assuming $e^+ e^-$ annihilation and energies much less than the Z boson mass, the total cross section is therefore given by
-%
-\begin{equation}
-  \sigma_{e^+ e^- \rightarrow q \bar q}(s) = \frac{4 \pi \alpha^2}{3 s} \cdot 3 \sum_f Q_f^2 \, ,
-	\label{eq:e+e-_annihilation}
-\end{equation}
-%
-where the sum is over all quark flavors that can be produced at the center-of-mass energy $\sqrt s$ and the factor $3$ is the number of colors \cite{cteq2001}.
+By itself, the parton model does not make any assumptions about the distribtion of partons inside the hadron.
+It just introduces it as a parameter in the form of \textit{parton distribution functions} (PDFs) $f_i(x)$, which represent the probability of finding a parton of type $i$ carrying a momentum fraction $x$ of the hadron.
+Predictions then take the form of a convolution of the parton level interaction with the PDF, summarized over all possible parton flavors.
+We call this the \enquote{naive} parton model.
+
+The naive parton model works well as long as the energy scale is not too high.
+Otherwise we need to include higher order corrections which can arise from real emissions and virtual loops.
+These involve infrared divergencies that cancel each other exactly thanks to the Kinoshita–Lee–Nauenberg theorem \cite{kln_theorem1,kln_theorem2}, rendering perturbative QCD as a whole an infrared safe theory.
+
+
+%With the help of perturbative QCD, there is a class of reactions involving hadrons for which the cross sections can be calculated directly.
+%These reactions are inclusive and do not contain any hadrons in the initial state.
+%A simple example is lepton pair annihilation into hadrons.
+%As the hadronic final state is fully inclusive, the cross section is identical to the electroweak cross section for $l+l' \rightarrow q \bar q$, where $l$ and $l'$ denote leptons and $q$ ($\bar q$) denotes a (anti-)quark.
+%Assuming $e^+ e^-$ annihilation and energies much less than the Z boson mass, the total cross section is therefore given by
+%%
+%\begin{equation}
+%  \sigma_{e^+ e^- \rightarrow q \bar q}(s) = \frac{4 \pi \alpha^2}{3 s} \cdot 3 \sum_f Q_f^2 \, ,
+%	\label{eq:e+e-_annihilation}
+%\end{equation}
+%%
+%where the sum is over all quark flavors that can be produced at the center-of-mass energy $\sqrt s$ and the factor $3$ is the number of colors \cite{cteq2001}.
 %
 %\subsection{Lepton-Hadron Cross Sections}
 %In the parton model, cross sections involving hadrons in the initial state are calculated by combining the parton-level cross sections (in leading order) with probability densities for a specific parton to be involved in it.
