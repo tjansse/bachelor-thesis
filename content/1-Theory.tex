@@ -281,6 +281,13 @@ The additional partons are again able to split or radiate gluons.
 By recursively applying this procedure, we obtain a cascade of parton emissions, called a \textit{parton shower}.
 An example is illustrated in \cref{fig:partonshower}.
 The shower ends when a certain cut-off scale is reached.
+%
+\begin{figure}[]
+	\includegraphics[width=0.5\textwidth]{images/partonshower.pdf}
+	\caption{Example of a parton shower.}
+	\label{fig:partonshower}
+\end{figure}
+%
 
 The evolution of the splitting with the decreasing scale is given by the DGLAP equation \cref{eq:dglap}.
 In this context the PDFs do not describe the momentum distributions of the partons inside of a hadron, but rather the distribution of the momentum fractions of the partons resulting from the splitting.
@@ -300,13 +307,7 @@ The most widely used methods to avoid double counting are CKKW matching \cite{ck
 Another problem of parton shower predictions is that they suffer from strong scale dependence because they are based on LO matrix elements.
 Promoting parton showers to NLO accuracy is a much harder task because of divergent event weights.
 Nonetheless, there are methods to circumvent this problem and the two widely used solutions are \mcatnlo{} \cite{mcatnlo} and \powheg{} \cite{powheg_a,powheg_b,powheg_c}.
-%
-\begin{figure}[]
-	\includegraphics[width=0.5\textwidth]{images/partonshower.pdf}
-	\caption{Example of a parton shower.}
-	\label{fig:partonshower}
-\end{figure}
-%
+As of recently, it is also possible to merge different jet multiplicities in NLO calculations matched to parton showers \cite{nlomerging1,nlomerging2,nlomerging3,nlomerging4,nlomerging5}.
 %
 \section{Next-to-leading order calculations}
 \label{sec:nlo_calculations}
