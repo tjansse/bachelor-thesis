@@ -1,0 +1,110 @@
+% !TeX encoding=unicode
+% !TeX spellcheck = de-DE
+
+\chapter{Variation of QCD input parameters}
+%
+\section{Reweighting QCD calculations}
+Often it is needed to vary the parameters in QCD calculations, for example the scale variables and PDFs to estimate the uncertainty.
+When the number of variations becomes large, it is not practical to rerun the whole event generation for each calculation as the time and resource consumption become too high.
+Instead it is possible to reuse information from previously generated events and combine them with the new parameters.
+Here we consider an NLO calculation using Catani-Seymour subtraction \cite{catani_seymour1997}, which is the scheme implemented in \sherpa{} and \mcgrid{}.
+Other subtraction schemes can be used as well, as is demonstrated in \cite{amcfast} for the FKS scheme \cite{fks_a,fks_b}.
+
+The total cross section can be separated into four finite terms:
+%
+\begin{equation}
+	\sigma^\text{NLO}_{pp \rightarrow X} = \int \dif \hat \sigma^B + \int \dif \hat \sigma^V + \int \dif \hat \sigma^I + \int \dif \hat \sigma^{RS} \,
+\end{equation}
+%
+They correspond to the Born (B), virtual (V), integrated subtraction (I) and real subtraction (RS) parts of the calculation.
+We need to work out the explicit dependence on the parameters to accurately reweight them.
+
+For the B and RS terms this is straightforward as they resemble LO calculations.
+Making use of the factorization theorem we can write them in the form
+%
+\begin{equation}
+	\sigma^{B/RS} = \sum_{i,j} \int \dif x_1 \dif x_2 \int \dif \Phi_n \left( \frac{\alpha_s(\mu_R^2)}{2 \pi} \right)^p \pdf_i(x_1,\mu_F^2) \pdf_j(x_2,\mu_F^2) \dif \hat\sigma \, ,
+\end{equation}
+%
+where for the B term $p = p_\text{LO}$ and for the RS term $p = p_\text{LO} + 1$.
+Using Monte Carlo integration, we can rewrite this as a sum over generated events:
+%
+\begin{equation}
+  \int \dif \hat \sigma^{B/RS} = \sum_{e=1}^{N_\text{evt}} \alpha_s^p(\mu_R^2) \pdf_1(x_1,\mu_F^2) \pdf_2(x_2,\mu_F^2) w_e^{(0)} \, ,
+  \label{eq:reweight_lo}
+\end{equation}
+%
+where the weight $w_e^{(0)}$ contains the parton-level matrix element squared and is completely independent of the QCD input parameters.
+
+The virtual part occupies a more complicated structure because the weights depend on the renormalization scale.
+It takes the form
+%
+\begin{equation}
+	\int \dif \hat \sigma^V = \sum_{e=1}^{N_\text{evt}} \alpha_s^{p_\text{LO} + 1}(\mu_R^2) \pdf_1(x_1,\mu_F^2) \pdf_2(x_2,\mu_F^2) \left\{ w_e^{(0)} + l_R w_e^{(1)} + l_R^2 w_e^{(2)} \right\} \, ,
+\end{equation}
+%
+with renormalization scale logarithms $l_R = \log\left(\frac{\mu_r^2}{\mu_{R,0}^2} \right)$, where $\mu_{R,0}$ is the scale at which $w_e^{(1)}$ and $w_e^{(2)}$ were originally evaluated.
+
+In the I part, the event weights have a complex dependence on the PDF.
+The full structure can be written as
+%
+\begin{align}
+	\int \dif \hat \sigma^I = \sum_{e=1}^{N_\text{evt}} &\alpha_s^{p_\text{LO} + 1}(\mu_R^2) \left\{ \vphantom{\left( \sum_{k=1}^4 \right)} f_1(i,x_1,\mu_F^2) w_e^{(0)} f_2(j,x_2,\mu_F^2) \right. \nonumber \\
+								&+ \left( \sum_{k=1}^4 f_1^{(k)}(i,x_1,x'_1,\mu_F^2) w_{e,k}^{(3)} \right) f_2(j,x_2,\mu_F^2) \nonumber \\
+								&\left. + f_1(j,x_1,\mu_F^2) \left( \sum_{k=1}^4 w_{e,k}^{(4)} f_2^{(k)}(j,x_2,x'_2,\mu_F^2) \right) \right\} \, ,
+\end{align}
+%
+where the $x$ and $x'$ are the Björken-$x$ before and after initial state branching.
+Moreover, $i$ and $j$ denote the parton flavours before the branching and the $f^{(k)}$ provide the correct form of the PDF depending on the type of branching.
+They are given explicitly in \cite{mcgrid2013}.
+
+We can dispose of the weights $w^{(1)}$ and $w^{(2)}$ by chosing a central scale.
+If we furthermore project the contributions from $w^{(3)}$ and $w^{(4)}$ onto separate events, we can write the total NLO cross section in the compact form
+%
+\begin{equation}
+  \sigma^\text{NLO}_{pp \rightarrow X} = \sum_{e=1}^{N_\text{evt}} \alpha_s^{p_e}(\mu_R^2) \pdf_1(x_1,\mu_F^2) \pdf_2(x_2,\mu_F^2) w_e \, ,
+  \label{eq:reweight_nlo}
+\end{equation}
+%
+
+Provided that all event weights have been stored, it is now possible to change the values of $\alpha_s$, $\mu_R$ and $\mu_F$ or use a different PDF \textit{a posteriori}.
+%
+\section{Interpolation grids}
+Despite the advantage towards regenerating all events for the variation of a single parameter, the reweighting approach is still not a satisfying solution for many use cases.
+The whole event record has to be stored, which can easily reach many gigabytes in high statistics computations.
+The storing and reprocessing of the events may be a challenge by itself and is not convenient if more than a few parameter variations have to be performed.
+One therefore whishes to somehow decrease the resource requirements without losing a significant amount of accuracy.
+In the ideal case, it should be mostly independent on the statistics.
+A possible solution is the use of interpolating grids to represent the PDFs and event weights.
+Then only a uniquely defined number of values has to be saved, while values in-between the grid points are generated by interpolating functions.
+Such a method has been implemented by the \appl{} \cite{applgrid2010} and \fnlo{} \cite{fastnlo2006,fastnlo2011} projects.
+
+The PDF $\pdf(x,Q^2)$ depends on the momentum fraction $x$ and the momentum transfer $Q^2$.
+It can be approximated as a sum over discrete grid points using interpolation functions $I$ of order $N$:
+%
+\begin{equation}
+	\pdf(x,Q^2) = \sum_{i=0}^{N_x} \sum_{j=0}^{N_Q} \pdf(x_i,Q_j^2) I_i^{(N_x)}(x_1) I_j^{(N_Q)}(Q^2) \, .
+\end{equation}
+%
+Consequently, we can write \cref{eq:reweight_nlo} as
+%
+\begin{alignat}{3}
+  \sigma^\text{NLO}_{pp \rightarrow X}	&= \sum_{e=1}^{N_\text{evt}} \sum_{i,j=0}^{N_x} \sum_{k=0}^{N_Q} &&\alpha_s^{p_e}(Q_k^2) \pdf_1(x_i,Q_k^2) \pdf_2(x_j,Q_k^2) w_e \nonumber \\
+  										&	&&\cdot I_i^{(N_x)}(x_1) I_j^{(N_x)}(x_2) I_k^{(N_Q)}(Q^2) \nonumber \\
+  										&= \mathrlap{\sum_p \sum_{i,j=0}^{N_x} \sum_{k=0}^{N_Q} \alpha_s^p(Q_k^2) \pdf_1(x_i,Q_k^2) \pdf_2(x_j,Q_k^2) W_{i,j,k}^{(p)} \, ,}
+\end{alignat}
+%
+where $p$ is the perturbative order and the interpolated weights $W_{i,j,k}^{(p)}$ are processed as a sum over the events:
+\begin{equation}
+	W_{i,j,k}^{(p)} = \sum_{e=1}^{N_\text{evt}} \delta_{p,p_e} w_e I_i^{(N_x)}(x_1) I_j^{(N_x)}(x_2) I_k^{(N_Q)}(Q^2) \, .
+\end{equation}
+%
+Now the sum over the events has been completely absorbed into the definition of the interpolated weights.
+These can be calculated in a single run of the event generator and be stored efficiently.
+The calculation of the cross section has become a simple sum over the grid points and thus is much faster for a large number of events.
+The approach can easily be extended to histogrammed data like differential cross sections by defining the observable bins and computing one weight $W_{i,j,k}^{(p),(s),(b)}$ for each bin $b$.
+However, unlike the full event record, the weight grid is restricted to the observable it was constructed for and cannot be used to calculate any other values.
+
+While the variation of the PDF and $\alpha_s$ is still straightforward, scale variation is slightly more complicated because the weights themselves depend on the scale choices.
+Nevertheless, it is possible to vary the scales without too much effort, using DGLAP evolution.
+The precise procedure is explained in \cite{applgrid2010}.
