@@ -7,8 +7,8 @@
 \section{PDF uncertainty in cross section calculations}
 The application of the interpolation method is sensible every time a calculation has to be repeated plenty of times.
 This situation is given for instance, when the uncertainty from a PDF set is meant to be included in a cross section calculation.
-Modern PDF sets contain a large number of different samples that can be used to derive the inherent uncertainty by evaluating the cross section for every sample and determining the standard deviation to obtain the confidence interval.
-Having verified that the interpolation grids allow for PDF reweighting in the previous section, it is now justified to use them to compute the PDF uncertainty.
+Modern PDF sets contain a large number of different samples that can be used to derive the inherent uncertainty.
+Having verified that the interpolation grids allow for PDF reweighting in the previous chapter, it is now justified to use them to compute the PDF uncertainty.
 Here we consider the NNPDF 3.0 NLO set \cite{nnpdf30}, which consists of \num{101} samples each for \num{5} different values of $\alpha_s$ between \num{0.115} and \num{0.121}.
 The grid that has been filled with 100 million events using the central value of the CT10 set is used to calculate a total of 505 replicas for the Higgs $p_\perp$ in \cref{fig:nnpdf_band}.
 The similarity between the \appl{} and \fnlo{} plots confirms the correctness of the calculation, as inaccuracies would propagate quite differently in the two implementations.
