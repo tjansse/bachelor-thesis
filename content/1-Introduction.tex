@@ -2,3 +2,42 @@
 % !TeX spellcheck = en-US
 
 \chapter{Introduction}
+Run 1 of the Large Hadron Collider (LHC) displayed great performance of the collider and its detectors.
+It enabled high precision tests of theoretical predictions at unprecedented center of mass energies.
+Simultaneously it encouraged theorists to expend huge effort in minimizing the uncertainties of calculations in quantum chromodynamics.
+A great amount of progress could be achieved, among others the automation of next-to-leading order (NLO) calculations, the merging of parton shower results with different jet multiplicities and the matching of parton showers to NLO-accuracy calculations \cite{eventgenerators}.
+As of 3 June this year, the LHC is delivering data again at an even higher center of mass energy of \SI{13}{\tera\electronvolt}.
+The new run promises new results and an increase in statistics, allowing for a more detailed study of many observations.
+
+Precise predicting of the expected results is crucial in a test of our current models.
+To achieve this, uncertainties in the calculations have to be as small as possible.
+However, with rising complexity the calculations become lengthy.
+Single computations lasting for days are not uncommon even at NLO.
+This is aggravated by the fact that they have to be repeated with different values of the coupling parameter $\alpha_s$, at different scales and with different parton distribution functions (PDFs) in order to get a reasonable estimate of the uncertainty.
+Including PDF uncertainties is especially expensive as it involves a large number of repeated calculations.
+PDF fitting groups, who include many different processes in their fits to the data, suffer from this particularly.
+Without any speedup, their task would be impossible.
+For this reason, methods have been developed to accelerate the process of varying the parameters, obviating the need for explicit recalculations.
+One method is based on a special event file format, that stores all information required to recompute NLO observables with different parameters \cite{ntuples}.
+A different approach is the on-the-fly reweighting that has been introduced in the 2.2.0 release of the Monte Carlo event generator \sherpa{} \cite{mcgrid20}.
+The fastest currently possible reevaluations are achieved with interpolation tools like \appl{} \cite{applgrid2010} and \fnlo{} \cite{fastnlo2006}.
+Two interfaces exist that allow the automated creation of the related interpolation grids in NLO calculations, namely \amcfast{} \cite{amcfast} and \mcgrid{} \cite{mcgrid2013}.
+
+Currently, \mcgrid{} supports calculations at LO, NLO and the fixed-order expansion of \mcatnlo{}.
+One of the goals of the project is the support of multijet merging calculations.
+Along this road, it has to be validated that the interpolation method works correctly when the different jet multiplicities are treated separately.
+In this thesis, the process of Higgs boson production through gluon fusion in combination with different jet multiplicities is considered.
+It had not been verified yet, that it is supported by \mcgrid{}.
+After the discovery of the Higgs boson \cite{higgsdiscovery_atlas2012,higgsdiscovery_cms2012}, one of the tasks of the \SI{13}{\tera\electronvolt} LHC will be the determination of its properties.
+Increased statistics will allow the study of differential cross sections for the first time.
+It is therefore important to enable the detailed analysis of theoretical uncertainties in this process.
+
+This thesis is organized as follows.
+First, in \cref{ch:pqcd,ch:parameter_variation}, an overview of the theoretical foundations involved in the calculations is given.
+It is followed by an illustration of the gluon fusion process in \cref{ch:gfusion}.
+There, a brief study of the Higgs transverse momentum in perturbative QCD is included.
+In \cref{ch:validation} the interpolation method implemented by \mcgrid{} is validated for the gluon fusion process with different jet multiplicities.
+Proof is provided that it is possible to vary the QCD parameters \textit{a posteriori} using either \appl{} or \fnlo{}.
+Two application examples are presented in \cref{ch:examples}.
+They are supposed to demonstrate the usefulness of the method.
+The thesis finishes with a conclusion and an outlook on possible extensions in the future.
