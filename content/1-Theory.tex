@@ -33,6 +33,7 @@ The perturbative approach to QCD is to write the observables as a power series i
 \end{equation}
 %
 where $\alpha_s \ll 1$ so that the series can be truncated after a few terms to obtain a useful approximation.
+This leads to leading order (LO), next-to-leading order (NLO), next-to-next-to-leading order (NNLO)\ldots{} predictions.
 A straightforward way to determine the coefficients is the use of Feynman Diagrams.
 %
 \subsection{Renormalization and the running coupling}
@@ -81,144 +82,15 @@ However, this also limits the applicability of the parton model to high energy c
 
 By itself, the parton model does not make any assumptions about the distribtion of partons inside the hadron.
 It just introduces it as a parameter in the form of \textit{parton distribution functions} (PDFs) $f_i(x)$, which represent the probability of finding a parton of type $i$ carrying a momentum fraction $x$ of the hadron.
-Predictions then take the form of a convolution of the parton level interaction with the PDF, summarized over all possible parton flavors.
+As they cannot be derived from first principles they have to be extracted from measured data.
+This is the task of different PDF fitting groups like HERAPDF \cite{herapdf}, CTEQ \cite{ct10}, MSTW \cite{mstw2008} and NNPDF \cite{nnpdf1}.
+Parton model predictions then take the form of a convolution of the parton level interaction with the PDF, summarized over all possible parton flavors.
 We call this the \enquote{naive} parton model.
 
 The naive parton model works well as long as the energy scale is not too high.
 Otherwise we need to include higher order corrections which can arise from real emissions and virtual loops.
 These involve infrared divergencies that cancel each other exactly thanks to the Kinoshita–Lee–Nauenberg theorem \cite{kln_theorem1,kln_theorem2}, rendering perturbative QCD as a whole an infrared safe theory.
-
-
-%With the help of perturbative QCD, there is a class of reactions involving hadrons for which the cross sections can be calculated directly.
-%These reactions are inclusive and do not contain any hadrons in the initial state.
-%A simple example is lepton pair annihilation into hadrons.
-%As the hadronic final state is fully inclusive, the cross section is identical to the electroweak cross section for $l+l' \rightarrow q \bar q$, where $l$ and $l'$ denote leptons and $q$ ($\bar q$) denotes a (anti-)quark.
-%Assuming $e^+ e^-$ annihilation and energies much less than the Z boson mass, the total cross section is therefore given by
-%%
-%\begin{equation}
-%  \sigma_{e^+ e^- \rightarrow q \bar q}(s) = \frac{4 \pi \alpha^2}{3 s} \cdot 3 \sum_f Q_f^2 \, ,
-%	\label{eq:e+e-_annihilation}
-%\end{equation}
-%%
-%where the sum is over all quark flavors that can be produced at the center-of-mass energy $\sqrt s$ and the factor $3$ is the number of colors \cite{cteq2001}.
-%
-%\subsection{Lepton-Hadron Cross Sections}
-%In the parton model, cross sections involving hadrons in the initial state are calculated by combining the parton-level cross sections (in leading order) with probability densities for a specific parton to be involved in it.
-%For example, the total cross section for scattering of a hadron by a lepton (\figref{fig:dis}) can be written as
-%%
-%\begin{equation}
-%	\sigma^{(lh)} (x,Q^2) = \sum_f \int_x^1 \dif \xi \enspace \hat \sigma^{(lf)} (x / \xi, Q^2) \cdot \phi_{f/h}(\xi) \, .
-%\end{equation}
-%%
-%\begin{figure}[]
-%	\includegraphics[width=0.5\textwidth]{images/dis.pdf}
-%	\caption{Deeply inelastic scattering.}
-%	\label{fig:dis}
-%\end{figure}
-%%
-%where $\phi_{f/h}(\xi)$ is the probability density for finding a parton of flavor $f$ with fractional momentum $\xi$ in hadron $h$.
-%This is generally called a \textit{parton distribution function} (PDF).
-%The variables $x$ and $Q^2$ are commonly used to describe this process, which is called \textit{deeply inelastic scattering}, and are defined as follows:
-%%
-%\begin{align}
-%  	Q^2 &= -q^2 = -(k - k')^2		\quad \text{(momentum transfer)} \\
-%	x &= \frac{Q^2}{2 p \cdot q}	\quad \text{(Bjorken scaling variable)}
-%\end{align}
-%%
-%$k$ and $k'$ are the momenta of the lepton before and after the scattering while $p$ is the momentum of the initial hadron.
-%The cross section for elastic scattering of the parton, $\hat \sigma^{(lf)}$, can be calculated in the Born approximation.
-%
-%In deeply inelastic scattering, the PDFs are related to structure functions $F_i(x,Q^2)$.
-%These can experimentally be obtained by measuring the differential cross section, which (considering photon exchange only) is related to the structure functions by
-%%
-%\begin{equation}
-%	\frac{\dif \sigma^{(lh)}}{\dif x \dif y} = 8 \pi \alpha^2 \frac{m_h E}{Q^4} \left[ \frac{y^2}{2} 2 x F_1(x,Q^2) + \left( 1 - y - \frac{m_h x y}{2 E} \right) F_2(x,Q^2) \right] \, ,
-%\end{equation}
-%%
-%where $y = \frac{p \cdot q}{p \cdot k}$ describes the inelasticity.
-%Therefore, deep inelastic scattering can be used to determine the PDFs.
-%The structure functions have two interesting properties:
-%%
-%\begin{enumerate}[labelindent=\parindent,leftmargin=*]
-%	\item in the \textit{Bjorken limit} $Q^2,\nu  \rightarrow \infty$ with $x$ fixed, the structure functions depend only on $x$, not on $Q^2$ (\textit{scaling});
-%	\item the structure functions satisfy the \textit{Callan-Gross relation}: $2 x F_1 = F_2$.
-%\end{enumerate}
-%%
-%The first one implies that partons are point-like particles.
-%The second is evidence for the spin-$\frac{1}{2}$ nature of quarks \cite{ellis1996}.
-%%
-\subsection{Hadron-Hadron Cross Sections}
-One of the achievements of the parton model is the prediction of cross sections for hadron-hadron collisions such as the \textit{Drell-Yan process} $h(p) +  h'(p') \rightarrow l(k) + l'(k') + X$.
-That is possible because PDFs are universal between reactions, so they can be determined once and used to calculate different cross sections.
-In general, the cross section for a hard scattering process involving two initial hadrons can be written as
-%
-\begin{equation}
-	\sigma(p,p') = \sum_{i,j} \int \dif \xi \dif \xi' \enspace \phi_{i/h}(\xi) \cdot \sigma_{ij}(\xi p,\xi' p',\alpha_s(\mu^2)) \cdot \phi_{j/h'}(\xi') \, .
-\end{equation}
-%
-
-%\Cref{fig:Z_y_LO} shows the cross section as a function of the Z boson rapidity in a Drell-Yan process at $\sqrt{s}=\SI{7}{\tera\electronvolt}$ calculated with the Sherpa event generator \cite{gleisberg2008ta,schonherr2008,gleisberg2008fv,schumann2007}.
-%The plot has been generated using the Rivet analysis system \cite{rivet2010}.
-%Different PDFs have been used (For each PDF set the central value has been used. The inherent uncertainties are not shown here.).
-%One sees that for small $y$ there is good agreement with the experimental data.
-%For $y > 2$ there are more fluctuations in the data as there are not enough events recorded in this range.
-%It is dominated by statistical uncertainty so that it differs more from the prediction.
-%The differences between the PDFs are not significant here.
-%% 
-%\begin{figure}[]
-%	\includegraphics[width=0.7\textwidth]{images/Z_y_LO.pdf}
-%	\caption{Cross section as a function of the Z boson rapidity in a Drell-Yan process at $\sqrt{s}=\SI{7}{\tera\electronvolt}$ for different PDF sets.
-%	The data has been collected by the CMS detector at the LHC during 2010 and is adopted from \cite{cms2012}.}
-%	\label{fig:Z_y_LO}
-%\end{figure}
-%%
-\section{Corrections to the naive parton model}
-In order to analyze the effects of higher order corrections, let us reconsider the case of $e^+ e^-$ annihilation into hadrons.
-The Born cross section is given by \cref{eq:e+e-_annihilation}.
-The first correction towards NLO is the emission of a gluon by one of the quarks (see \cref{fig:e+e-_real}).
-%
-\begin{figure}
-\centering
-	\begin{subfigure}[]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{images/e+e-_real1.pdf}
-	\end{subfigure}
-	\hspace{1cm}
-	\begin{subfigure}[]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{images/e+e-_real2.pdf}
-	\end{subfigure}
-	\caption{Feynman diagrams for gluon emission in $e^+ e^-$ annihilation}
-	\label{fig:e+e-_real}
-\end{figure}
-%
-Considering soft emission only, one can show that the differential cross section for this process factorizes so that one can write
-%
-\begin{equation}
-  \abs{\matrixelement_{q \bar q g}}^2 \dif \Phi_{q \bar q g} \simeq \abs{\matrixelement_{q \bar q}}^2 \dif \Phi_{q \bar q} \dif \softgluon \, .
-\end{equation}
-%
-The squared matrix element and phase space for $q \bar q$ production plus the emission of a soft gluon is given by the Born squared matrix element and phase space multiplied by a factor $\dif \softgluon$, which is the probability for the emission of a soft gluon:
-%
-\begin{equation}
-  \dif \softgluon = \frac{2 \alpha_s C_F}{\pi} \frac{\dif E}{E} \frac{\dif \theta}{\sin \theta} \frac{\dif \phi}{2 \pi} \, .
-\end{equation}
-%
-There are two divergences in this equation:
-In the limit $E \rightarrow 0$ there is an infrared divergence and in the limit $\theta \rightarrow 0,\pi$ there is a collinear divergence when the gluon and quark move in the same direction.
-These divergences always appear when a gluon is emitted by a quark \cite{salam2010}.
-
-Additionally to the real emissions in \cref{fig:e+e-_real} there are virtual emissions shown in \cref{fig:e+e-_virtual}, which we have not taken into account yet.
-%
-\begin{figure}[]
-	\includegraphics[width=\textwidth]{images/e+e-_virtual.pdf}
-	\caption{Virtual correction in $e^+ e^-$ annihilation}
-	\label{fig:e+e-_virtual}
-\end{figure}
-%
-As the total cross section must be finite, the divergences in the real term must be canceled by the virtual term (this can, for example, be shown by the use of dimensional regularization \cite{ellis1996}).
-Therefore the corrections to the total cross section are dominated by hard, large-angle gluons and for these perturbation theory is applicable \cite{salam2010}.
-Observables that are insensitive to the emission of soft or collinear gluons, like the total cross section for $e^+ e^- \rightarrow \text{hadrons}$, are called \textit{infrared safe}.
-%
-\subsection{Factorization}
+However, the cancellation is not guaranteed if we truncate the perturbative series after a finite number of terms.
 In processes involving initial-state hadrons, the partons can emit gluons before entering the hard interaction (see \cref{fig:initial_gluon}).
 %
 \begin{figure}
@@ -245,77 +117,34 @@ There is an arbitrariness in how much of the correction terms is to be factored 
 This is defined by the \textit{factorization scheme}.
 Common schemes include the DIS scheme, in which all non-leading order contributions are absorbed into the PDFs, and the $\overline{MS}$ scheme, in which only the divergent parts are absorbed.
 Once the factorization scheme has been chosen, it has to be used consistently in all following cross section calculations.
-%
-\subsection{Evolution}
-There is an analog for the renormalization group equation for factorization, called the Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP) equation.
-For a quark entering the hard process with longitudinal momentum $xp$ it takes the form
+
+As an example, let us consider the cross section for a scattering process involving two initial state hadrons $h$ and $h'$ with momenta $p$ and $p'$, which now takes the factorized form
 %
 \begin{equation}
-	\dod{q(x,\mu_F^2)}{\ln{\mu_F^2}} = \frac{\alpha_s}{2 \pi} \int_x^1 \dif z P_{qq}(z) \frac{q(x/z,\mu_F^2)}{z} \, ,
+	\sigma_{h,h'} = \sum_{i,j} \int \dif x \dif x' f_{i/h}(x,\mu^2) \cdot \sigma_{ij}(x p,x' p',\alpha_s(\mu^2)) \cdot f_{j/h'}(x',\mu^2) \, ,
 \end{equation}
 %
-where $q(x/z,\mu_F^2)$ is the quark distribution.
-The function $P_{qq}(z)$ is called splitting kernel.
-It has a perturbative expansion in $\alpha_s$:
+where we have taken $\mu_R = \mu_F= \mu$ and where the sum includes all possible initial state parton combinations.
+$\sigma_{ij}$ denotes the hard parton-level cross section which can be calculated in perturbation theory.
+All the non-perturbative long-distance contributions are factorized into the PDFs.
 %
-\begin{equation}
-	P_{qq}(z) = P_{qq}^{(0)}(z) + \frac{\alpha_s}{2 \pi} P_{qq}^{(1)}(z) + \dots \, .
-\end{equation}
+\subsection{DGLAP evolution}
+Analogous to the running coupling, we can define a renormalization group equation that describes the evolution of the PDFs with the factorization scale.
+It is called the Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP) equation \cite{dglap1,dglap2,dglap3} and takes the form of a matrix equation spanning all quark flavors and the gluon:
 %
-As the proton does not only contain quarks but also antiquarks and gluons, the actual DGLAP equation is a matrix equation:
-%
-\begin{equation}
-	\dod{}{\ln{\mu_F^2}} \begin{pmatrix} q_i \\ g \end{pmatrix} = \frac{\alpha_s(\mu_F^2)}{2 \pi}
-	\begin{pmatrix}
-		P_{q_i q_j}	&	P_{q_i g} \\
-		P_{g q_j}	&	P_{gg}
+\begin{align}
+	\dod{}{\ln{\mu_F^2}} \begin{pmatrix} q_i(x,\mu_F^2) \\ g(x,\mu_F^2) \end{pmatrix} = &\frac{\alpha_s(\mu_F^2)}{2 \pi} \sum_{q_j,\bar q_j} \int_x^1 \frac{\dif z}{z} \nonumber \\
+	&\begin{pmatrix}
+		P_{q_i q_j}(\frac{x}{z},\alpha_s(\mu_F^2))	&	P_{q_i g}(\frac{x}{z},\alpha_s(\mu_F^2)) \\
+		P_{g q_j}(\frac{x}{z},\alpha_s(\mu_F^2))	&	P_{gg}(\frac{x}{z},\alpha_s(\mu_F^2))
 	\end{pmatrix}
-	\otimes \begin{pmatrix} q_j \\ g \end{pmatrix} \, .
+	\begin{pmatrix} q_j(z,\mu_F^2) \\ g(z,\mu_F^2) \end{pmatrix} \, .
 	\label{eq:dglap}
-\end{equation}
+\end{align}
 %
-All splitting kernels can be written as perturbative series and have been calculated up to next-to-next-to-leading-order\cite{splittingkernel1,splittingkernel2}. 
-The DGLAP equation allows to calculate the scale dependence of the PDFs and therefore is an important and powerful tool for PDF fits.
-%
-\section{Parton shower}
-There are phase space regions that cannot be well described by fixed order calculations in perturbation theory.
-These include collinear parton splitting and soft gluon emission, which are closely related to the presence of infrared divergences.
-To describe them accurately, higher order terms need to be considered.
-However, the work required to derive the needed matrix elements quickly increases with each order, which is the reason why most processes have not been calculated further than NLO.
-We need a different approach to deal with the problematic phase space regions.
-Instead of relying on a fixed order calculation, we can consider an approximate model that includes the dominant contributions at all orders.
-In this model, the collinear splitting and soft gluon emission of every parton in the initial and final state is simulated with respect to the related probabilities.
-The additional partons are again able to split or radiate gluons.
-By recursively applying this procedure, we obtain a cascade of parton emissions, called a \textit{parton shower}.
-An example is illustrated in \cref{fig:partonshower}.
-The shower ends when a certain cut-off scale is reached.
-%
-\begin{figure}[]
-	\includegraphics[width=0.5\textwidth]{images/partonshower.pdf}
-	\caption{Example of a parton shower.}
-	\label{fig:partonshower}
-\end{figure}
-%
-
-The evolution of the splitting with the decreasing scale is given by the DGLAP equation \cref{eq:dglap}.
-In this context the PDFs do not describe the momentum distributions of the partons inside of a hadron, but rather the distribution of the momentum fractions of the partons resulting from the splitting.
-
-The computation of parton showers can be formulated in a way that is well suited for a Monte Carlo program.
-We can combine the parton shower program with a hadronization model, that combines both the initial state and the final state partons into colorless hadrons, beginning at the cutoff scale of the shower. We call the result a \textit{parton shower Monte Carlo event generator}.
-It is a powerful tool that is able to fully simulate QCD events in hadron collisions.
-
-The main disadvantage of parton shower generators is that they are not guaranteed to properly describe events that include hard and large-angle emissions.
-Those events are, however, correctly described by fixed order calculations.
-To combine the benefits of both, algorithms have been developed that merge LO matrix elements and parton showers with different multiplicities (MEPS).
-The main issue in the course of this is double counting.
-An event with $n$ partons in the final state can either be the product of an $n$-parton matrix element that has been showered with only soft and collinear emissions or it could be the product of an $(n-1)$-parton matrix element for which the showering led to the emission of a hard, large-angle gluon.
-Those cases have to be carefully seperated to avoid an overrepresentation of the related phase space region.
-The most widely used methods to avoid double counting are CKKW matching \cite{ckkw_a,ckkw_b} and MLM matching \cite{mlm_a,mlm_b}.
-
-Another problem of parton shower predictions is that they suffer from strong scale dependence because they are based on LO matrix elements.
-Promoting parton showers to NLO accuracy is a much harder task because of divergent event weights.
-Nonetheless, there are methods to circumvent this problem and the two widely used solutions are \mcatnlo{} \cite{mcatnlo} and \powheg{} \cite{powheg_a,powheg_b,powheg_c}.
-As of recently, it is also possible to merge different jet multiplicities in NLO calculations matched to parton showers \cite{nlomerging1,nlomerging2,nlomerging3,nlomerging4,nlomerging5}.
+The $P_{i j}(x,\alpha_s)$ are called splitting functions and they imply the probability of a parton splitting into two other partons.
+They are calculable in perturbation theory and are known up to NNLO \cite{splittingkernel1,splittingkernel2}.
+The DGLAP equation allows to evolve the PDFs from an initial scale $Q_0$ to another scale $Q$ without further knowledge and thus is one of the most important equations of perturbative QCD.
 %
 \section{Next-to-leading order calculations}
 \label{sec:nlo_calculations}
@@ -371,6 +200,46 @@ Including the Born contribtion we arrive at the expression
 which now only consists of finite terms.
 The remaining integral can be evaluated using Monte Carlo methods.
 The subtraction method can be generalized to arbitrary hadronic cross sections, provided that the definition of the observables allows the cancellation of the divergences.
+%
+\section{Parton shower}
+There are phase space regions that cannot be well described by fixed order calculations in perturbation theory.
+These include collinear parton splitting and soft gluon emission, which are closely related to the presence of infrared divergences.
+To describe them accurately, higher order terms need to be considered.
+However, the work required to derive the needed matrix elements quickly increases with each order, which is the reason why most processes have not been calculated further than NLO.
+We need a different approach to deal with the problematic phase space regions.
+Instead of relying on a fixed order calculation, we can consider an approximate model that includes the dominant contributions at all orders.
+In this model, the collinear splitting and soft gluon emission of every parton in the initial and final state is simulated with respect to the related probabilities.
+The additional partons are again able to split or radiate gluons.
+By recursively applying this procedure, we obtain a cascade of parton emissions, called a \textit{parton shower}.
+An example is illustrated in \cref{fig:partonshower}.
+The shower ends when a certain cut-off scale is reached.
+%
+\begin{figure}[]
+	\includegraphics[width=0.5\textwidth]{images/partonshower.pdf}
+	\caption{Example of a parton shower.}
+	\label{fig:partonshower}
+\end{figure}
+%
+
+The evolution of the splitting with the decreasing scale is given by the DGLAP equation \cref{eq:dglap}.
+In this context the PDFs do not describe the momentum distributions of the partons inside of a hadron, but rather the distribution of the momentum fractions of the partons resulting from the splitting.
+
+The computation of parton showers can be formulated in a way that is well suited for a Monte Carlo program.
+We can combine the parton shower program with a hadronization model, that combines both the initial state and the final state partons into colorless hadrons, beginning at the cutoff scale of the shower. We call the result a \textit{parton shower Monte Carlo event generator}.
+It is a powerful tool that is able to fully simulate QCD events in hadron collisions.
+
+The main disadvantage of parton shower generators is that they are not guaranteed to properly describe events that include hard and large-angle emissions.
+Those events are, however, correctly described by fixed order calculations.
+To combine the benefits of both, algorithms have been developed that merge LO matrix elements and parton showers with different multiplicities (MEPS).
+The main issue in the course of this is double counting.
+An event with $n$ partons in the final state can either be the product of an $n$-parton matrix element that has been showered with only soft and collinear emissions or it could be the product of an $(n-1)$-parton matrix element for which the showering led to the emission of a hard, large-angle gluon.
+Those cases have to be carefully seperated to avoid an overrepresentation of the related phase space region.
+The most widely used methods to avoid double counting are CKKW matching \cite{ckkw_a,ckkw_b} and MLM matching \cite{mlm_a,mlm_b}.
+
+Another problem of parton shower predictions is that they suffer from strong scale dependence because they are based on LO matrix elements.
+Promoting parton showers to NLO accuracy is a much harder task because of divergent event weights.
+Nonetheless, there are methods to circumvent this problem and the two widely used solutions are \mcatnlo{} \cite{mcatnlo} and \powheg{} \cite{powheg_a,powheg_b,powheg_c}.
+As of recently, it is also possible to merge different jet multiplicities in NLO calculations matched to parton showers \cite{nlomerging1,nlomerging2,nlomerging3,nlomerging4,nlomerging5}.
 %
 \section{Reweighting QCD calculations}
 Often it is needed to vary the parameters in QCD calculations, for example the scale variables and PDFs to estimate the uncertainty.
