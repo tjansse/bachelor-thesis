@@ -471,7 +471,7 @@
   % bibstyle=alphabetic, % load a bibliography style
   % citestyle=alphabetic, % load a citatio style
   %% get APS style with phys
-  articletitle=false,biblabel=brackets,%
+  articletitle=true,biblabel=brackets,%
   chaptertitle=false,pageranges=false,%
   natbib=true, % define natbib compatible cite commands
 %%--- Backend --- --- ---
@@ -502,6 +502,20 @@
 %  style=apa
 %
 \DeclareLanguageMapping{american}{american-apa}
+
+\DeclareSourcemap{
+  \maps[datatype=bibtex, overwrite]{
+    \map{
+	  % hide language and note fields
+      \step[fieldset=language, null]
+      \step[fieldset=note, null]
+	  %% hide title if eprint or doi is given
+      \step[fieldsource=eprint, final]
+      \step[fieldsource=doi, final]
+      \step[fieldset=title, null]
+    }
+  }
+}
 
 \EndCodeSection{PackagesCitation}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
