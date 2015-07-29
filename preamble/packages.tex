@@ -1014,6 +1014,11 @@
 % Note: According to documentation the font warnings can be ignored
 \usepackage[htt]{hyphenat}
 
+% Allow/Prevent line breaks at hyphen/dash.
+% Normally LaTeX won't hyphenate words that have a dash in it.
+% With the shortcuts option, this package introduces the commands \-/ and \=/
+\usepackage[shortcuts]{extdash}
+
 \usepackage[%
   % disable,
 ]{todonotes}

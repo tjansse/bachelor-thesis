@@ -14,18 +14,23 @@ Changing the PDF during the reevaluation of the cross section, however, has caus
 
 Two examples have been demonstrated that give an impression of possible applications.
 Global PDF fits benefit from the possibilty of evaluating a large number of PDFs in cross section calculations.
-Without tools like \appl{} and \fnlo{}, many processes could not by included it fits beyond LO.
+Without tools like \appl{} and \fnlo{}, many processes could not be included in fits beyond LO.
 In addition to that, the interpolation tools simplify the treatment of uncertainties in theoretical predictions based on Monte Carlo event generators.
 
-... 
+Further studies concerning the use of \mcgrid{} in the Higgs production process could include dynamically allocated scales.
+This case adds further complexity to the interpolation grids as the dependence on the scales has to be interpolated as well.
+It could not be validated yet.
+In a next step the support of the fixed order expansion of \mcatnlo, which is introduced in version 2.0 of \mcgrid{}, needs to be verified as well.
+That would pave the way for a complete inclusion of multijet merged calculations.
+It is a desirable goal, because merged calculations are very complex and time consuming and therefore are very well suited for a method that allows faster computation.
+%... 
+%
+%Version 2.0 of \mcgrid{} will allow the creation of grids for calculations matching NLO QCD computations and parton showers using \mcatnlo{}.
+%This has not been verified yet for Higgs production.
+%However, as has been seen in section \textcolor{red}{???} the \mcatnlo{} approach allows for a more accurate description of soft and collinear emissions than fixed order NLO calculations.
+%Therefore ...
 
-Version 2.0 of \mcgrid{} will allow the creation of grids for calculations matching NLO QCD computations and parton showers using \mcatnlo{}.
-This has not been verified yet for Higgs production.
-However, as has been seen in section \textcolor{red}{???} the \mcatnlo{} approach allows for a more accurate description of soft and collinear emissions than fixed order NLO calculations.
-Therefore ...
-
-
-In section \textcolor{red}{???} we examined, how \appl{} and \fnlo{} parametrize the $x$-distribution to provide a better coverage of the data on a grid with equal-sized bins.
+In \cref{sec:xtransform} we examined how \appl{} and \fnlo{} parametrize the $x$\-/distribution to provide a better coverage of the data on a grid with equal-sized bins.
 Which transformation should be used depends on the considered observable.
 To achieve the best possible performance, one would have to check the actual $x$-distribution in each case.
 The provided transformations are obviously a compromise to cover the needs of a large number of processes.
