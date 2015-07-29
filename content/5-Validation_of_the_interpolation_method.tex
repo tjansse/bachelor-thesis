@@ -106,34 +106,7 @@ Therefore, $Q^2$ does not change and only one bin is used.
 To achieve better comparability, \appl{} is configured to use fourth order interpolation, which is the same as is hard coded into the \fnlo{} library.
 Samples of \num{10} million events are used to fill the grids.
 
-\Cref{fig:hnlo_validation} shows the ratio of the results obtained by convoluting the grids with the CT10 PDF to the reference distributions for the 0-jet process.
-Using the high precision grid, all errors are below \SI{0.1}{\percent}.
-\appl{} and \fnlo{} show roughly the same accuracy.
-The effect of using a smaller grid is considerably bigger for the $p_\perp$ distributions than for the rapidity distributions.
-This can be understood by looking back at \cref{fig:hpt_compare,fig:hy_compare} in \cref{sec:xtransform}.
-There we saw, that high values of $x$ are completely negligible for the rapidity distribution and that it can be interpolated very well by using a logarithmic transformation.
-The $p_\perp$ distribution is still dominated by small values of $x$, but compared to the rapidity large $x$-values have a bigger influence.
-Thereby, the interpolation is not as optimal.
-Here, the smaller grid also has a more severe impact on the \appl{} result than on the \fnlo{} one.
-
-With one jet (\cref{fig:hjnlo_validation}), the errors in the reproduction of the $p_\perp$ become notably larger.
-Even with the high precision grid, \fnlo{} produces errors for individual bins of the $p_\perp$ distributions, that are large compared to the other bins.
-The errors of the largest outliers are about \SI{2}{\percent}.
-In comparison, the errors produced by \appl{} with the high precision grid are of the order of \SI{0.01}{\percent}.
-The main difference between the two packages that remains in the used configuration is the interpolation function.
-Both use a kind of Lagrangian polynomials, but the implementations differ.
-It might be possible, that the function used by \appl{} is more appropriate in this case.
-Nonetheless, the reproduction of the rapidity distributions is still very good with all grids.
-This is because the rapidity is not much influenced by additional jets.
-
-The case of two jets is shown in \cref{fig:hjjnlo_validation}.
-Here the grids with \num{50} bins produce larger errors than in the other cases.
-With the high precision grid, however, \appl{} still allows a very good reproduction of all observables.
-\fnlo{}, by contrast, features large outliers with errors of several percent.
-This can be attributed to the statistics.
-\Cref{fig:hpt_100m} proves that the reproduction is much better with a 100 million event sample, albeit still being worse than with \appl{}.
-The problem with the $H + 2j$ process is that the event generator produces many negative weights, so that high statistics is needed to obtain a smooth distribution.
-For some reason, this affects \fnlo{} more than \appl{}.
+\Cref{fig:hnlo_validation} shows the ratio of the results obtained by convoluting the grids with the CT10 PDF to the reference distributions for the 0-jet process.%
 %
 \begin{sidewaysfigure}
 \centering
@@ -152,9 +125,31 @@ For some reason, this affects \fnlo{} more than \appl{}.
 \begin{subfigure}[]{0.49\textwidth}
 	\includegraphics[width=\textwidth]{images/hnlo_leta_50v30.pdf}
 \end{subfigure}
-\caption{H+0j NLO}
+\caption{Validation of the interpolation method for the gluon fusion process.
+		The cross section has been calculated from the interpolation grids with the same parameters as during the event generation.
+		The results are compared to the reference distributions that have not been interpolated at all.
+		The cross section has been evaluated differential in four different variables: The Higgs transverse momentum (upper left), the Higgs rapidity (upper right), the transverse momentum of the $\tau$ leptons (lower left) and the pseudorapidity of the leptons (lower right).}
 \label{fig:hnlo_validation}
 \end{sidewaysfigure}
+%
+Using the high precision grid, all errors are below \SI{0.1}{\percent}.
+\appl{} and \fnlo{} show roughly the same accuracy.
+The effect of using a smaller grid is considerably bigger for the $p_\perp$ distributions than for the rapidity distributions.
+This can be understood by looking back at \cref{fig:hpt_compare,fig:hy_compare} in \cref{sec:xtransform}.
+There we saw, that high values of $x$ are completely negligible for the rapidity distribution and that it can be interpolated very well by using a logarithmic transformation.
+The $p_\perp$ distribution is still dominated by small values of $x$, but compared to the rapidity large $x$-values have a bigger influence.
+Thereby, the interpolation is not as optimal.
+Here, the smaller grid also has a more severe impact on the \appl{} result than on the \fnlo{} one.
+
+With one jet (\cref{fig:hjnlo_validation}), the errors in the reproduction of the $p_\perp$ become notably larger.
+Even with the high precision grid, \fnlo{} produces errors for individual bins of the $p_\perp$ distributions, that are large compared to the other bins.
+The errors of the largest outliers are about \SI{2}{\percent}.
+In comparison, the errors produced by \appl{} with the high precision grid are of the order of \SI{0.01}{\percent}.
+The main difference between the two packages that remains in the used configuration is the interpolation function.
+Both use a kind of Lagrangian polynomials, but the implementations differ.
+It might be possible, that the function used by \appl{} is more appropriate in this case.
+Nonetheless, the reproduction of the rapidity distributions is still very good with all grids.
+This is because the rapidity is not much influenced by additional jets.
 %
 \begin{sidewaysfigure}
 \centering
@@ -173,9 +168,19 @@ For some reason, this affects \fnlo{} more than \appl{}.
 \begin{subfigure}[]{0.49\textwidth}
 	\includegraphics[width=\textwidth]{images/hjnlo_leta_50v30.pdf}
 \end{subfigure}
-\caption{H+1j NLO}
+\caption{As in \cref{fig:hnlo_validation} with one anti-$k_t$ jet with $p_\perp \geq \SI{20}{\giga\electronvolt}$.}
 \label{fig:hjnlo_validation}
 \end{sidewaysfigure}
+%
+
+The case of two jets is shown in \cref{fig:hjjnlo_validation}.
+Here the grids with \num{50} bins produce larger errors than in the other cases.
+With the high precision grid, however, \appl{} still allows a very good reproduction of all observables.
+\fnlo{}, by contrast, features large outliers with errors of several percent.
+This can be attributed to the statistics.
+\Cref{fig:hpt_100m} proves that the reproduction is much better with a 100 million event sample, albeit still being worse than with \appl{}.
+The problem with the $H + 2j$ process is that the event generator produces many negative weights, so that high statistics is needed to obtain a smooth distribution.
+For some reason, this affects \fnlo{} more than \appl{}.
 %
 \begin{sidewaysfigure}
 \centering
@@ -194,7 +199,7 @@ For some reason, this affects \fnlo{} more than \appl{}.
 \begin{subfigure}[]{0.49\textwidth}
 	\includegraphics[width=\textwidth]{images/hjjnlo_leta_70v50.pdf}
 \end{subfigure}
-\caption{H+2j NLO}
+\caption{As in \cref{fig:hjnlo_validation} with 2 jets.}
 \label{fig:hjjnlo_validation}
 \end{sidewaysfigure}
 %
@@ -244,15 +249,18 @@ Using a larger phase space run, the inaccuracies with \appl{} would of course va
 %
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{images/scalesvar_hnlo_appl.pdf}
-	\caption{Scale variation appl}
+	\includegraphics[width=0.9\textwidth]{images/scalesvar_hnlo_appl.pdf}
+	\caption{Demonstration of \textit{a posteriori} scale factor variation with \appl{} for $H + 0$ jets.
+			The blue band in the upper plot shows the reference result from \sherpa{} and the green band shows the reproduction with an interpolation grid filled using the central scale.
+			In both cases the central value of the variation is shown as a line.
+			The errors at low $p_\perp$ are not due to problems with the interpolation, more details in the text.}
 	\label{fig:scalesvar_hnlo_appl}
 \end{figure}
 %
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{images/scalesvar_hnlo_fnlo.pdf}
-	\caption{Scale variation fnlo}
+	\includegraphics[width=0.9\textwidth]{images/scalesvar_hnlo_fnlo.pdf}
+	\caption{As in \cref{fig:scalesvar_hnlo_appl} with \fnlo{}.}
 	\label{fig:scalesvar_hnlo_fnlo}
 \end{figure}
 %
@@ -268,15 +276,16 @@ This problem is object of further investigations.
 %
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{images/scalesvar_hjnlo_appl.pdf}
-	\caption{Scale variation appl}
+	\includegraphics[width=0.9\textwidth]{images/scalesvar_hjnlo_appl.pdf}
+	\caption{As in \cref{fig:scalesvar_hnlo_appl} for $H + 1$ jet.}
 	\label{fig:scalesvar_hjnlo_appl}
 \end{figure}
 %
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{images/scalesvar_hjnlo_fnlo.pdf}
-	\caption{Scale variation fnlo}
+	\includegraphics[width=0.9\textwidth]{images/scalesvar_hjnlo_fnlo.pdf}
+	\caption{As in \cref{fig:scalesvar_hnlo_fnlo} for $H + 1$ jet.
+			See text for a discussion of the errors.}
 	\label{fig:scalesvar_hjnlo_fnlo}
 \end{figure}
 %
@@ -293,15 +302,19 @@ They do not indicate any problems with the interpolation (which is proven by the
 %
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{images/pdfvar_hnlo_appl.pdf}
-	\caption{PDF variation appl}
+	\includegraphics[width=0.88\textwidth]{images/pdfvar_hnlo_appl.pdf}
+	\caption{Demonstration of \textit{a posteriori} PDF and scale factor variation with \appl{} for $H + 0$ jets.
+			The blue band in the upper plot shows the reference result from \sherpa{} and the green band shows the reproduction with an interpolation grid filled using the central scale.
+			In both cases the central value of the variation is shown as a line.
+			The grid has been filled with the central value of CT10 and has been convoluted with the central value of NNPDF3.0.
+			The errors at low $p_\perp$ are not due to problems with the interpolation, more details in the text.}
 	\label{fig:pdfvar_hnlo_appl}
 \end{figure}
 %
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{images/pdfvar_hnlo_fnlo.pdf}
-	\caption{PDF variation fnlo}
+	\includegraphics[width=0.88\textwidth]{images/pdfvar_hnlo_fnlo.pdf}
+	\caption{As in \cref{fig:pdfvar_hnlo_appl} with \fnlo{}.}
 	\label{fig:pdfvar_hnlo_fnlo}
 \end{figure}
 %
