@@ -505,14 +505,22 @@
 
 \DeclareSourcemap{
   \maps[datatype=bibtex, overwrite]{
+	% hide language and note fields
     \map{
-	  % hide language and note fields
       \step[fieldset=language, null]
       \step[fieldset=note, null]
-	  %% hide title if eprint or doi is given
+    }
+	%% hide title if eprint or doi is given
+    \map{
       \step[fieldsource=eprint, final]
+	  \step[fieldset=doi, null] % only show doi when there is no eprint
+      \step[fieldset=title, null]
+      \step[fieldset=booktitle, null]
+    }
+    \map{
       \step[fieldsource=doi, final]
       \step[fieldset=title, null]
+      \step[fieldset=booktitle, null]
     }
   }
 }
