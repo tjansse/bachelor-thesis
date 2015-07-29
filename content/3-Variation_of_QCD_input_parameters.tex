@@ -3,11 +3,22 @@
 
 \chapter{Variation of QCD input parameters}
 \label{ch:parameter_variation}
-%
-\section{Reweighting QCD calculations}
-Often it is needed to vary the parameters in QCD calculations, for example the scale variables and PDFs to estimate the uncertainty.
+Calculations in perturbative QCD comprise uncertainties which should be determined as good as possible when they are meant to be used for predictions.
+One source of uncertainty is the truncation of the perturbative series at some fixed order.
+The corrections due to higher terms can only be known exactly if those terms are evaluated explicitely.
+As that is no suitable approach, a good practice has evolved that consists of varying the renormalization and factorization scales in a specific range and checking how much the cross section changes by this variation.
+This is based on the fact that the scale parameters are arbitrary variables, introduced in the renormalization procedure, and have no physical meaning.
+Physical observables do not depend on the scale parameters and therefore in perturbative calculations a strong dependence on the scales indicates that higher order terms could give large corrections.
+Additional uncertainties come from the strong coupling constant $\alpha_s$ and the choice of the PDF.
+They suffer from errors in the experimental data and depend on the assumptions that are used during the fit.
+
+For a differentiated estimate of the full uncertainty, a cross section calculation has to be repeated with different input values.
 When the number of variations becomes large, it is not practical to rerun the whole event generation for each calculation as the time and resource consumption become too high.
 Instead it is possible to reuse information from previously generated events and combine them with the new parameters.
+In the following, two different methods are presented.
+%
+\section{Reweighting QCD calculations}
+If we want to change the parameters in a calculation, we need to know exactly, how the individual terms depend on those parameters.
 Here we consider an NLO calculation using Catani-Seymour subtraction \cite{catani_seymour1997}, which is the scheme implemented in \sherpa{} and \mcgrid{}.
 Other subtraction schemes can be used as well, as is demonstrated in \cite{amcfast} for the FKS scheme \cite{fks_a,fks_b}.
 
@@ -19,7 +30,6 @@ The total cross section can be separated into four finite terms:
 %
 They correspond to the Born (B), virtual (V), integrated subtraction (I) and real subtraction (RS) parts of the calculation.
 We need to work out the explicit dependence on the parameters to accurately reweight them.
-
 For the B and RS terms this is straightforward as they resemble LO calculations.
 Making use of the factorization theorem we can write them in the form (cf. \cref{eq:hadron_crosssection})
 %
