@@ -8,7 +8,7 @@ They include the most important aspects regarding numerical calculations.
 It is by far no complete depiction but it covers the parts that play a key role in the calculations used for this thesis.
 %
 \section{The QCD Lagrangian}
-QCD is the quantum field theory that describes the strong interactions between Quarks and Gluons.
+QCD is the quantum field theory that describes the strong interactions between Quarks and gluons.
 Mathematically, it is a non-abelian gauge theory with symmetry group SU(3).
 Its Lagrangian is given by
 %
@@ -77,7 +77,7 @@ Another important consequence is that the probability of a parton influencing th
 The reason this model works is the asymptotic freedom of the underlying theory.
 However, this also limits the applicability of the parton model to high energy cross sections.
 
-By itself, the parton model does not make any assumptions about the distribtion of partons inside the hadron.
+By itself, the parton model does not make any assumptions about the distribution of partons inside the hadron.
 It just introduces it as a parameter in the form of \textit{parton distribution functions} (PDFs) $f_i(x)$, which represent the probability of finding a parton of type $i$ carrying a momentum fraction $x$ of the hadron.
 As they cannot be derived from first principles they have to be extracted from measured data.
 This is the task of different PDF fitting groups like HERAPDF \cite{herapdf}, CTEQ \cite{ct10}, MSTW \cite{mstw2008} and NNPDF \cite{nnpdf1}.
@@ -86,7 +86,7 @@ We call this the \enquote{naive} parton model.
 
 The naive parton model works well as long as the energy scale is not too high.
 Otherwise we need to include higher order corrections which can arise from real emissions and virtual loops.
-These involve infrared divergencies that cancel each other exactly thanks to the Kinoshita–Lee–Nauenberg theorem \cite{kln_theorem1,kln_theorem2}, rendering perturbative QCD as a whole an infrared safe theory.
+These involve infrared divergences that cancel each other exactly thanks to the Kinoshita–Lee–Nauenberg theorem \cite{kln_theorem1,kln_theorem2}, rendering perturbative QCD as a whole an infrared safe theory.
 However, the cancellation is not guaranteed if we truncate the perturbative series after a finite number of terms.
 In processes involving initial-state hadrons, the partons can emit gluons before entering the hard interaction (see \cref{fig:initial_gluon}).%
 %
@@ -147,7 +147,7 @@ The DGLAP equation allows to evolve the PDFs from an initial scale $Q_0$ to anot
 \section{Next-to-leading order calculations}
 \label{sec:nlo_calculations}
 When going from LO calculations at tree level to NLO, one has to take into account real emissions from the colored particles and virtual loops.
-In general, both the real and the virtual corrections are seperately divergent and need to be regularized.
+In general, both the real and the virtual corrections are separately divergent and need to be regularized.
 There are two general methods that are commonly used to take care of the infrared divergences in NLO calculations, namely the \textit{slicing method} and the \textit{subtraction method}.
 The slicing method introduces a small parameter $\delta$, which slices the integration region into two pieces so that it can be computed numerically.
 A residual dependency on $\delta$ remains, which should be neglectable if $\delta$ is small.
@@ -155,7 +155,7 @@ However, this has to be checked in an actual calculation.
 The advantage of the subtraction method is that it does not involve any approximations.
 
 We can demonstrate the subtraction method with a simple example, that has been adopted from \cite{mcatnlo}.
-Consider the expression for the expectation value of an infrared-safe observable $O$ at NLO accuracy, consisting of a Born (B), a virtual (V) und a real (R) term:
+Consider the expression for the expectation value of an infrared-safe observable $O$ at NLO accuracy, consisting of a Born (B), a virtual (V) and a real (R) term:
 %
 \begin{equation}
 	\left< O \right> = \lim_{\epsilon \rightarrow 0} \int_0^1 \dif x x^{-2 \epsilon} O(x) \left[ \left( \od{\sigma}{x} \right)_B + \left( \od{\sigma}{x} \right)_V + \left( \od{\sigma}{x} \right)_R \right] \, .
@@ -181,13 +181,13 @@ Using the subtraction method, we can rewrite the real contribution to obtain
 	\label{eq:toymodel_realsub}
 \end{align}
 %
-By explicitely writing down the virtual part,
+By explicitly writing down the virtual part,
 %
 \begin{equation}
 	\left< o \right>_V = a \lim_{\epsilon \rightarrow 0} \int_0^1 \frac{\dif x}{x^{2 \epsilon}} O(x) \left( \frac{B}{2 \epsilon} + V \right) \delta(x) \, ,
 \end{equation}
 %
-we see that the first term gets exactly cancelled by the first term on the right hand side of \cref{eq:toymodel_realsub}.
+we see that the first term gets exactly canceled by the first term on the right hand side of \cref{eq:toymodel_realsub}.
 Including the Born contribution we arrive at the expression
 %
 \begin{equation}
@@ -230,7 +230,7 @@ Those events are, however, correctly described by fixed order calculations.
 To combine the benefits of both, algorithms have been developed that merge LO matrix elements and parton showers with different multiplicities (MEPS).
 The main issue in the course of this is double counting.
 An event with $n$ partons in the final state can either be the product of an $n$-parton matrix element that has been showered with only soft and collinear emissions or it could be the product of an $(n-1)$-parton matrix element for which the showering led to the emission of a hard, large-angle gluon.
-Those cases have to be carefully seperated to avoid an overrepresentation of the related phase space region.
+Those cases have to be carefully separated to avoid an overrepresentation of the related phase space region.
 The most widely used methods to avoid double counting are CKKW matching \cite{ckkw_a,ckkw_b} and MLM matching \cite{mlm_a,mlm_b}.
 
 Another problem of parton shower predictions is that they suffer from strong scale dependence because they are based on LO matrix elements.

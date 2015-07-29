@@ -32,7 +32,7 @@ The functions provided by \appl{} are:
 %
 \fnlo{} only provides the functions $f_1(x)$ and $f_2(x)$.
 To be used in a grid, the functions are divided into equal-sized bins.
-In order to avoid empty bins, the limit values are determined in a seperate \enquote{phasespace run} before the actual fill run.
+In order to avoid empty bins, the limit values are determined in a separate \enquote{phasespace run} before the actual fill run.
 
 The functions (normalized to the domain $[0,1]$ for comparability) are shown in \cref{fig:xtransform}.%
 %
@@ -218,7 +218,7 @@ For some reason, this affects \fnlo{} more than \appl{}.
 \section{Parameter variation}
 \subsection{Scale factor variation}
 \label{sec:scalesvar}
-Now that we have verified that the grids produced by \appl{} and \fnlo{} are able to reproduce the reference distributions up to the interpoation accuracy, we can take a look at the variation of the QCD parameters.
+Now that we have verified that the grids produced by \appl{} and \fnlo{} are able to reproduce the reference distributions up to the interpolation accuracy, we can take a look at the variation of the QCD parameters.
 In this section we will examine the results obtained by varying the renormalization and factorization scales.
 \appl{} and \fnlo{} both have methods implemented that allow to change the scales when calculating NLO cross sections.
 There are different approaches to this.
@@ -259,10 +259,10 @@ Using a larger phasespace run, the inaccuracies with \appl{} would of course van
 
 In the 1-jet case, shown in \cref{fig:scalesvar_hjnlo_appl,fig:scalesvar_hjnlo_fnlo}, the scale dependence is more complicated.
 Still, \appl{} is able to reproduce all three scales at the permille level.
-\fnlo{}, on the contrary, shows an unexpected behaviour.
+\fnlo{}, on the contrary, shows an unexpected behavior.
 There are systematic deviations that increase towards high transverse momenta.
 As the error is definitely not caused by statistical fluctuations and because the central scale is reproduced very well, there is probably a mistake in the implementation of the evolution.
-A similar behaviour can be observed with \appl{} as well, when the 2-jet case is considered.
+A similar behavior can be observed with \appl{} as well, when the 2-jet case is considered.
 Therefore, this does not seem to be a problem of \fnlo{} alone.
 This problem is object of further investigations.
 %
