@@ -32,7 +32,7 @@ The functions provided by \appl{} are:
 %
 \fnlo{} only provides the functions $f_1(x)$ and $f_2(x)$.
 To be used in a grid, the functions are divided into equal-sized bins.
-In order to avoid empty bins, the limit values are determined in a separate \enquote{phasespace run} before the actual fill run.
+In order to avoid empty bins, the limit values are determined in a separate \enquote{phase space run} before the actual fill run.
 
 The functions (normalized to the domain $[0,1]$ for comparability) are shown in \cref{fig:xtransform}.%
 %
@@ -103,7 +103,7 @@ This is because with higher jet multiplicity, the influence of high $x$ values i
 As we have seen in \cref{sec:xtransform}, this transformation favors low values of $x$, so a higher number of grid points is needed to accurately represent the high $x$ region.
 For all the following calculations, the scale parameters have been fixed to the mass of the Higgs boson.
 Therefore, $Q^2$ does not change and only one bin is used.
-To achieve better comparability, \appl{} is configured to use fourth order interpolation, which is the same as is hardcoded into the \fnlo{} library.
+To achieve better comparability, \appl{} is configured to use fourth order interpolation, which is the same as is hard coded into the \fnlo{} library.
 Samples of \num{10} million events are used to fill the grids.
 
 \Cref{fig:hnlo_validation} shows the ratio of the results obtained by convoluting the grids with the CT10 PDF to the reference distributions for the 0-jet process.
@@ -238,9 +238,9 @@ In \cref{fig:scalesvar_hnlo_appl,fig:scalesvar_hnlo_fnlo} the reference distribu
 We observe a strong scale dependence, indicating that higher order terms entail large corrections.
 This turns out to be true \cite{gfusionnnlo1,gfusionnnlo2}.
 It can be seen, that the accuracy of the reproduction is very good in both cases.
-The discrepancies at low $p_\perp$ in \cref{fig:scalesvar_hnlo_appl} are due to an insufficient phasespace run (the first ten million events have been used), meaning that during the fill run $x$-values emerged that were not expected by \appl{}.
-The \fnlo{} grid was prepared with the same phasespace run and obviously it responds to these events in a different way resulting in a precise reproduction throughout the range of considered values.
-Using a larger phasespace run, the inaccuracies with \appl{} would of course vanish.
+The discrepancies at low $p_\perp$ in \cref{fig:scalesvar_hnlo_appl} are due to an insufficient phase space run (the first ten million events have been used), meaning that during the fill run $x$-values emerged that were not expected by \appl{}.
+The \fnlo{} grid was prepared with the same phase space run and obviously it responds to these events in a different way resulting in a precise reproduction throughout the range of considered values.
+Using a larger phase space run, the inaccuracies with \appl{} would of course vanish.
 %
 \begin{figure}
 	\centering
@@ -288,7 +288,7 @@ They are compared to the reference distribution, that has been produced by \sher
 The results are shown in \cref{fig:pdfvar_hnlo_appl,fig:pdfvar_hnlo_fnlo} for \appl{} and \fnlo{}, respectively.
 Again, we observe a very good reproduction.
 The magnitude of the errors is similar to the results of the previous section (cf. \cref{fig:scalesvar_hnlo_appl,fig:scalesvar_hnlo_fnlo}).
-As has already been explained above, the discrepancies in the \appl{} plot at low $p_\perp$ originate from an insufficient phasespace run that did not cover the whole $x$-range.
+As has already been explained above, the discrepancies in the \appl{} plot at low $p_\perp$ originate from an insufficient phase space run that did not cover the whole $x$-range.
 They do not indicate any problems with the interpolation (which is proven by the \fnlo{} result in \cref{fig:pdfvar_hnlo_fnlo}) and are fixable.
 %
 \begin{figure}
