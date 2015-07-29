@@ -2,6 +2,21 @@
 % !TeX spellcheck = de-DE
 
 \chapter{Conclusion}
+In this thesis, an interpolation method has been used to accelerate the variation of parameters in a fixed order NLO calculation.
+\mcgrid{} has been used to interface two different tools, \appl{} and \fnlo{}, which have been used to fill interpolation grids with the correct information.
+This has been performed explicitly for the example of Higgs boson production at the LHC.
+It could be verified that the applied method is able to achieve sub-percent accuracy in the reproduction of different observables.
+The possibility of \textit{a posteriori} variation of the renormalization and factorization scales has been demonstrated.
+It shows no significant decrease in accuracy when no additional hard jets are considered but problems in the reproduction emerged in the cases of one and two additional jets (cf. \cref{sec:scalesvar}).
+They seem to be caused by the technique that is used to variate the scales and not by errors in the interpolation method itself.
+Future investigations will isolate the cause of the problem and deduce what is needed to fix it.
+Changing the PDF during the reevaluation of the cross section, however, has caused no further problems and has provided reproduction accuracy at permille level.
+
+Two examples have been demonstrated that give an impression of possible applications.
+Global PDF fits benefit from the possibilty of evaluating a large number of PDFs in cross section calculations.
+Without tools like \appl{} and \fnlo{}, many processes could not by included it fits beyond LO.
+In addition to that, the interpolation tools simplify the treatment of uncertainties in theoretical predictions based on Monte Carlo event generators.
+
 ... 
 
 Version 2.0 of \mcgrid{} will allow the creation of grids for calculations matching NLO QCD computations and parton showers using \mcatnlo{}.
